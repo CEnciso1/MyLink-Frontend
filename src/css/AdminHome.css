@@ -1,0 +1,49 @@
+.content-container {
+  top: 170px;
+  position: absolute;
+  background-color: rgb(73, 161, 249);
+}
+.options-bar {
+  top: 130px;
+  position: relative;
+}
+.add-link {
+  bottom: 15px;
+  position: relative;
+}
+.option-button {
+  left: 48.75%;
+  top: 120px;
+  z-index: 5;
+}
+.option-image {
+  height: 40px;
+  width: 40px;
+}
+.link-form {
+  top: 170px;
+  z-index: 5;
+}
+.link-container {
+  height: 130px;
+}
+.link-content {
+  height: 80%;
+  left: 15px;
+  top: 10px;
+}
+.delete-link {
+  width: fit-content;
+  left: 95%;
+  bottom: 10px;
+}
+.close-button {
+  left: 96%;
+  bottom: 30px;
+}
+.new-link {
+  bottom: 15px;
+}
+.t {
+  width: fit-content;
+}

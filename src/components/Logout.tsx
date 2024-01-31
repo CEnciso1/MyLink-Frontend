@@ -11,7 +11,7 @@ export default function Logout() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/logout",
+        "https://mylink-backend.onrender.com/logout",
         {},
         {
           withCredentials: true,

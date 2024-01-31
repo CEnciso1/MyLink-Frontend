@@ -17,7 +17,7 @@ function Account() {
       try {
         console.log(username);
         const response = await axios.get(
-          `http://localhost:5000/account-data/${username}`
+          `https://mylink-backend.onrender.com/account-data/${username}`
         );
         console.log(response);
         if (response.data.links) {

@@ -16,7 +16,7 @@ function Signup() {
     try {
       console.log("test1");
       const response = await axios.post(
-        "http://localhost:5000/signup",
+        "https://mylink-backend.onrender.com/signup",
         {
           email: email,
           username: username,

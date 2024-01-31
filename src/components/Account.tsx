@@ -20,6 +20,7 @@ function Account() {
           `https://mylink-backend.onrender.com/account-data/${username}`
         );
         console.log(response);
+        console.log("test");
         if (response.data.links) {
           setLinks(response.data.links);
         }

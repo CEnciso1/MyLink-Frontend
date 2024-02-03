@@ -38,10 +38,13 @@ export default function AdminHome() {
   ) => {
     e.preventDefault();
     try {
-      const response = await axios.put("http://localhost:5000/delete-link", {
-        _id: userData?._id,
-        link: link,
-      });
+      const response = await axios.put(
+        "https://mylink-backend.onrender.com/delete-link",
+        {
+          _id: userData?._id,
+          link: link,
+        }
+      );
       console.log("response", response);
       const temp = userData?.links.filter((item) => item !== link);
       console.log(temp);
@@ -225,8 +228,10 @@ export default function AdminHome() {
                             className="border-0 p-0 content bg-white font-bold w-fit"
                             onClick={(e) => setFlagTrue(index, e)}
                           >
-                            <span>{item.title}</span>
-                            <img src={editImage}></img>
+                            <span className="flex flex-row mb-2">
+                              {item.title}
+                              <img src={editImage}></img>
+                            </span>
                           </button>
                         ) : (
                           <form onSubmit={(e) => handleTitleChange(e, index)}>
@@ -244,7 +249,7 @@ export default function AdminHome() {
                           {item.link}
                         </div>
                       </>
-                      <div className="absolute self-end top-14 mr-4">
+                      <div className="absolute self-end mr-4">
                         <button
                           className="border-0 bg-transparent"
                           onClick={(e) => handleDeleteLink(e, item)}

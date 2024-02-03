@@ -38,10 +38,13 @@ export default function AdminHome() {
   ) => {
     e.preventDefault();
     try {
-      const response = await axios.put("http://localhost:5000/delete-link", {
-        _id: userData?._id,
-        link: link,
-      });
+      const response = await axios.put(
+        "https://mylink-backend.onrender.com/delete-link",
+        {
+          _id: userData?._id,
+          link: link,
+        }
+      );
       console.log("response", response);
       const temp = userData?.links.filter((item) => item !== link);
       console.log(temp);

@@ -38,13 +38,10 @@ export default function AdminHome() {
   ) => {
     e.preventDefault();
     try {
-      const response = await axios.put(
-        "https://mylink-backend.onrender.com/delete-link",
-        {
-          _id: userData?._id,
-          link: link,
-        }
-      );
+      const response = await axios.put("http://localhost:5000/delete-link", {
+        _id: userData?._id,
+        link: link,
+      });
       console.log("response", response);
       const temp = userData?.links.filter((item) => item !== link);
       console.log(temp);
@@ -152,7 +149,7 @@ export default function AdminHome() {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen w-screen">
       <Logout></Logout>
       <div className="container h-full flex flex-col items-center p-0">
         <div className="relative top-32 z-10 ">
@@ -220,8 +217,8 @@ export default function AdminHome() {
             {showLinks && (
               <div>
                 {userData?.links.map((item, index) => (
-                  <div className="bg-white h-fit py-3 mt-2 rounded-2">
-                    <div className="relative h-4/5 ml-16 flex flex-col wfit">
+                  <div className="bg-white h-fit w-100 py-3 mt-2 rounded-2">
+                    <div className="relative h-4/5 ml-8 flex flex-col">
                       <>
                         {!editFlags[index] ? (
                           <button
@@ -243,7 +240,9 @@ export default function AdminHome() {
                             ></input>
                           </form>
                         )}
-                        <div className="w-4/6">{item.link}</div>
+                        <div className="w-5/6 h-fit break-words">
+                          {item.link}
+                        </div>
                       </>
                       <div className="absolute self-end top-14 mr-4">
                         <button

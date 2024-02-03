@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import "../css/App.css";
-import "../css/Home.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../auth/AuthContext";
@@ -54,56 +52,54 @@ function Home() {
 
   const navigate = useNavigate();
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center vh-100">
+    <div className="flex flex-col items-center justify-center h-screen">
       {alert && (
         <div
-          className="alert position-absolute mb-5 alert-danger"
+          className="alert absolute mb-5 alert-danger"
           style={{ top: "180px" }}
           role="alert"
         >
           Email or password was incorrect
         </div>
       )}
-      <div className="fs-1 position-absolute title fw-bold">MyLink</div>
-      <form
-        className="d-flex w-100 flex-column align-items-center justify-content-center"
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <div className="row justify-content-center w-100">
-          <div className="col-md-7">
+      <div className="text-5xl relative bottom-5 font-bold">MyLink</div>
+      <div className="w-full flex-col flex items-center mb-4">
+        <form
+          className="flex w-full flex-column items-center justify-center"
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <div className="w-7/12">
             <input
               type="email"
-              className="form-control rounded-pill border-0 p-2"
+              className="form-control rounded-3xl border-0 p-2"
               id="email"
               placeholder="email@example.com"
               onChange={(e) => setEmail(e.target.value)}
             ></input>
           </div>
-        </div>
-        <div className="row justify-content-center w-100 mt-4">
-          <div className="col-md-7">
+          <div className="w-7/12 mt-4">
             <input
               type="password"
-              className="form-control rounded-pill border-0 p-2"
+              className="form-control rounded-3xl border-0 p-2"
               id="password"
               placeholder="password"
               onChange={(e) => setPassword(e.target.value)}
             ></input>
           </div>
-        </div>
+          <button
+            type="submit"
+            className="bg-green-500 w-50 rounded-3xl p-2 border-0 text-white mt-4 font-bold"
+          >
+            Log In
+          </button>
+        </form>
         <button
-          type="submit"
-          className="submit w-50 rounded-pill p-2 mt-4 border-0 text-white mt-3"
+          className="end-0 bg-white px-5 py-2 mt-4 rounded-3xl border-0 font-bold text-black"
+          onClick={() => navigate("/Signup")}
         >
-          Log In
+          Sign Up
         </button>
-      </form>
-      <button
-        className="end-0 px-5 py-2 mt-4 rounded-pill border-0"
-        onClick={() => navigate("/Signup")}
-      >
-        Sign Up
-      </button>
+      </div>
     </div>
   );
 }

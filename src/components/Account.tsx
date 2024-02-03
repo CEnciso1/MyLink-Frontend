@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios, { AxiosRequestConfig } from "axios";
-import "../css/Account.css";
 import blocksImage from "../assets/blocks.svg";
 import linkImage from "../assets/link.svg";
 
@@ -39,29 +38,29 @@ function Account() {
   };
 
   return (
-    <div className="vh-100 text-center">
-      <div className="container d-flex h-100">
-        <div className=" position-absolute t option-button">
+    <div className="h-screen">
+      <div className="container flex flex-col items-center h-100">
+        <div className="relative top-32 z-10 ">
           <button
-            className="border-0 bg-transparent"
+            className="border-0 bg-transparent h-10 w-10"
             onClick={() => setShowLinks((state) => !state)}
           >
             <img
-              className="option-image"
+              className="option-image h-10 w-10"
               src={showLinks ? linkImage : blocksImage}
             ></img>
           </button>
         </div>
-        <div className="container d-flex flex-column align-items-center">
-          <div className="fw-bolder mt-5">@{username}</div>
+        <div className="font-bold text-2xl mt-3">@{username}</div>
+        <div className="flex flex-col items-center">
           {links && (
-            <div className="content-container container position-absolute d-flex flex-column py-3 rounded-2 w-100">
+            <div className="top-44 absolute flex flex-col py-3 w-5/6 justify-center">
               {showLinks && (
                 <div>
                   {links.map((item, index) => (
-                    <div className="w-100 justify-content-center d-flex">
+                    <div>
                       <button
-                        className="border-0 link mt-2 rounded-3 py-3 fw-bolder"
+                        className="bg-white w-100 mt-2 mb-2 rounded-3xl py-3 fw-bolder"
                         onClick={(e) => handleLinkClick(e, item.link)}
                       >
                         {item.title}

@@ -8,14 +8,13 @@ import instagramImage from "../assets/instagram.svg";
 import deleteImage from "../assets/delete.svg";
 import closeImage from "../assets/close.svg";
 import editImage from "../assets/edit.svg";
-import "../css/AdminHome.css";
 import axios, { AxiosRequestConfig } from "axios";
 import { useAuth } from "../auth/AuthContext";
 
 export default function AdminHome() {
   const { username } = useParams();
   const [showLinks, setShowLinks] = useState(true);
-  const [showAddLink, setShowAddLink] = useState(true);
+  const [showAddLink, setShowAddLink] = useState(false);
   const [links, setLinks] = useState();
   const [newLink, setNewLink] = useState("");
   const [linkTitle, setLinkTitle] = useState("");
@@ -39,13 +38,10 @@ export default function AdminHome() {
   ) => {
     e.preventDefault();
     try {
-      const response = await axios.put(
-        "https://mylink-backend.onrender.com/delete-link",
-        {
-          _id: userData?._id,
-          link: link,
-        }
-      );
+      const response = await axios.put("http://localhost:5000/delete-link", {
+        _id: userData?._id,
+        link: link,
+      });
       console.log("response", response);
       const temp = userData?.links.filter((item) => item !== link);
       console.log(temp);
@@ -61,16 +57,13 @@ export default function AdminHome() {
   const handleNewLink = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "https://mylink-backend.onrender.com/add-link",
-        {
-          _id: userData?._id,
-          links: [
-            ...(userData?.links || []),
-            { link: newLink, title: linkTitle },
-          ],
-        }
-      );
+      const response = await axios.post("http://localhost:5000/add-link", {
+        _id: userData?._id,
+        links: [
+          ...(userData?.links || []),
+          { link: newLink, title: linkTitle },
+        ],
+      });
       if (setUserData)
         setUserData((userData) => ({
           ...userData,
@@ -144,6 +137,7 @@ export default function AdminHome() {
       if (userData && setUserData) {
         userData.links[index].title = newTitle;
         setUserData(userData);
+        setNewTitle("");
       }
     } catch (error) {
       console.log(error);
@@ -152,63 +146,61 @@ export default function AdminHome() {
   };
 
   return (
-    <div className="vh-100">
+    <div className="h-screen">
       <Logout></Logout>
-      <div className="container d-flex flex-column align-items-center">
-        <div className=" position-absolute t option-button">
+      <div className="container h-full flex flex-col items-center p-0">
+        <div className="relative top-32 z-10 ">
           <button
-            className="border-0 bg-transparent"
+            className="border-0 bg-transparent h-10 w-10"
             onClick={() => optionClick()}
           >
             <img
-              className="option-image"
+              className="option-image h-10 w-10"
               src={showLinks ? linkImage : blocksImage}
             ></img>
           </button>
         </div>
         {showLinks && (
-          <div className="options-bar justify-content-end d-flex w-100 flex-row">
-            <div className="">
-              <button
-                className="border-0 rounded-3 bg-light p-2 px-3 add-link fw-bolder"
-                onClick={() => setShowAddLink((state) => !state)}
-              >
-                add link
-              </button>
-            </div>
+          <div className="relative flex flex-row justify-end mr-4 top-16 w-100 items-end">
+            <button
+              className="bg-white rounded-md py-2 px-2 mt-2 font-bold"
+              onClick={() => setShowAddLink((state) => !state)}
+            >
+              add link
+            </button>
           </div>
         )}
         {showAddLink && (
-          <div className="container position-absolute rounded border link-form bg-light py-5">
-            <div>
+          <div className="container absolute rounded link-form bg-white py-4">
+            <div className="flex flex-row justify-end">
               <button
-                className="border-0 close-button position-relative bg-transparent"
+                className="border-0 relative bg-transparent bottom-3"
                 onClick={() => setShowAddLink(false)}
               >
                 <img src={closeImage}></img>
               </button>
             </div>
-            <div className="new-link position-relative">
-              <div className="fw-bolder p-2">Enter URL and Title</div>
+            <div className="bottom-5 relative">
+              <div className="font-bold text-xl p-2">Enter URL and Title</div>
               <form onSubmit={(e) => handleNewLink(e)}>
-                <div className="d-flex flex-row ">
+                <div className="flex flex-row">
                   <input
                     type="text"
-                    className="form-control rounded-pill border-2 "
+                    className="form-control rounded-3xl border-2 "
                     id="link"
                     placeholder="myLink.com"
                     onChange={(e) => setNewLink(e.target.value)}
                   ></input>
                   <input
                     type="text"
-                    className="form-control rounded-pill  border-2 w-25"
+                    className="form-control ml-2 rounded-pill border-2"
                     id="title"
                     placeholder="title"
                     onChange={(e) => setLinkTitle(e.target.value)}
                   ></input>
                   <button
                     type="submit"
-                    className="col-md-4 submit rounded-pill mx-2 p-2 border-0 text-white "
+                    className="w-60 submit rounded-pill ml-2 p-2 border-0 text-white font-bold"
                   >
                     Add
                   </button>
@@ -218,16 +210,16 @@ export default function AdminHome() {
           </div>
         )}
         {!showAddLink && (
-          <div className="container content-container py-3 rounded-2">
+          <div className="container top-44  absolute py-3 px-10 rounded-2">
             {showLinks && (
               <div>
                 {userData?.links.map((item, index) => (
-                  <div className="bg-light link-container mt-2 rounded-2">
-                    <div className="mx-5 position-relative link-content justify-content-evenly d-flex flex-column">
+                  <div className="bg-white h-fit py-3 mt-2 rounded-2">
+                    <div className="relative h-4/5 ml-16 flex flex-col">
                       <>
                         {!editFlags[index] ? (
                           <button
-                            className="border-0 p-0 content bg-light fw-bold t"
+                            className="border-0 p-0 content bg-white font-bold w-fit"
                             onClick={(e) => setFlagTrue(index, e)}
                           >
                             <span>{item.title}</span>
@@ -236,7 +228,7 @@ export default function AdminHome() {
                         ) : (
                           <form onSubmit={(e) => handleTitleChange(e, index)}>
                             <input
-                              className="border-1 bg-transparent t"
+                              className="border-1 form-control bg-transparent w-fit"
                               type="text"
                               id={`input-${index}`}
                               placeholder={item.title}
@@ -245,16 +237,16 @@ export default function AdminHome() {
                             ></input>
                           </form>
                         )}
-                        <div>{item.link}</div>
+                        <div className="w-5/6">{item.link}</div>
                       </>
-                    </div>
-                    <div className="position-relative delete-link">
-                      <button
-                        className="border-0 bg-transparent"
-                        onClick={(e) => handleDeleteLink(e, item)}
-                      >
-                        <img src={deleteImage}></img>
-                      </button>
+                      <div className="absolute self-end top-14 mr-4">
+                        <button
+                          className="border-0 bg-transparent"
+                          onClick={(e) => handleDeleteLink(e, item)}
+                        >
+                          <img src={deleteImage}></img>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}

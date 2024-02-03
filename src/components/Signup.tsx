@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -8,13 +8,32 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [alert, setAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [allowSubmit, setAllowSubmit] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(
+      validateEmail(email),
+      password.length > 6,
+      (document?.getElementById("submit") as HTMLButtonElement)?.disabled
+    );
+    if (validateEmail(email) && password.length > 6) {
+      setAllowSubmit(true);
+    } else {
+      setAllowSubmit(false);
+    }
+  }, [email, password]);
+
+  const validateEmail = (email: string) => {
+    var re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(email);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //Attempt sign in if not display error
     try {
-      console.log("test1");
       const response = await axios.post(
         "https://mylink-backend.onrender.com/signup",
         {
@@ -29,72 +48,66 @@ function Signup() {
       console.log(response.data.success);
       if (response.data.success) navigate("/");
       setAlert(!response.data.success);
+      setAlertMessage(response.data.message);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center vh-100">
+    <div className="flex flex-col items-center justify-center h-screen">
       {alert && (
-        <div
-          className="alert position-absolute mb-5 alert-danger"
-          style={{ top: "180px" }}
-          role="alert"
-        >
-          Account with that email already exists
+        <div className="alert absolute mb-5 alert-danger top-44" role="alert">
+          {alertMessage}
         </div>
       )}
-      <div className="fs-1  fw-bold">Register</div>
+      <div className="relative text-5xl font-bold bottom-4">Register</div>
       <form
         action=""
-        className="d-flex w-100 flex-column align-items-center justify-content-center"
+        className="flex w-5/6 relative bottom-4 flex-col items-center justify-center"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div className="row justify-content-center text-center w-100">
-          <div className="col-md-5">
-            <label className="fw-bold">email</label>
-            <input
-              type="email"
-              className="form-control rounded-pill border-0 p-2"
-              id="email"
-              placeholder="email@example.com"
-              onChange={(e) => setEmail(e.target.value)}
-            ></input>
-          </div>
+        <div className="mt-3 w-4/6">
+          <label className="font-bold">email</label>
+          <input
+            type="email"
+            className="form-control rounded-3xl border-0 p-2"
+            id="email"
+            placeholder="email@example.com"
+            onChange={(e) => setEmail(e.target.value)}
+          ></input>
         </div>
-        <div className="row justify-content-center mt-4 text-center w-100">
-          <div className="col-md-5">
-            <label className="fw-bold">username</label>
-            <input
-              type="text"
-              className="form-control rounded-pill border-0 p-2"
-              id="username"
-              placeholder="myLink.com/username"
-              onChange={(e) => setUsername(e.target.value)}
-            ></input>
-          </div>
+        <div className="mt-3 w-4/6">
+          <label className="fw-bold">username</label>
+          <input
+            type="text"
+            className="form-control rounded-3xl border-0 p-2"
+            id="username"
+            placeholder="myLink.com/username"
+            onChange={(e) => setUsername(e.target.value)}
+          ></input>
         </div>
-        <div className="row justify-content-center text-center w-100 mt-4">
-          <div className="col-md-5">
-            <label className="fw-bold">email</label>
-            <input
-              type="password"
-              className=" w-100 form-control rounded-pill border-0 p-2"
-              id="password"
-              placeholder="password"
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
-          </div>
+        <div className="mt-3 w-4/6">
+          <label className="fw-bold">email</label>
+          <input
+            type="password"
+            className=" w-100 form-control rounded-3xl border-0 p-2"
+            id="password"
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          ></input>
         </div>
-        <div className="row w-100 justify-content-center">
-          <button
-            type="submit"
-            className="col-md-4 submit rounded-pill p-2 mt-4 border-0 text-white "
-          >
-            Sign Up
-          </button>
-        </div>
+        <button
+          type="submit"
+          className={
+            "w-1/3 rounded-3xl p-2 mt-4 border-0 text-white font-bold " +
+            (allowSubmit ? "bg-green-500" : "bg-green-800")
+          }
+          id="submit"
+          disabled={!allowSubmit}
+        >
+          Sign Up
+        </button>
       </form>
     </div>
   );

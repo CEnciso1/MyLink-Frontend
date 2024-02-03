@@ -26,7 +26,7 @@ export default function Logout() {
   return (
     <div>
       <button
-        className="submit position-absolute rounded-pill p-2 px-5 mx-4 mt-4 border-0 text-white end-0 fw-bolder"
+        className="bg-green-500 position-absolute rounded-pill p-2 px-5 mx-4 mt-4 border-0 text-white end-0 fw-bolder"
         onClick={(e) => handleLogout(e)}
       >
         Logout

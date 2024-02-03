@@ -221,7 +221,7 @@ export default function AdminHome() {
               <div>
                 {userData?.links.map((item, index) => (
                   <div className="bg-white h-fit py-3 mt-2 rounded-2">
-                    <div className="relative h-4/5 ml-16 flex flex-col">
+                    <div className="relative h-4/5 ml-16 flex flex-col wfit">
                       <>
                         {!editFlags[index] ? (
                           <button
@@ -243,7 +243,7 @@ export default function AdminHome() {
                             ></input>
                           </form>
                         )}
-                        <div className="w-5/6">{item.link}</div>
+                        <div className="w-4/6">{item.link}</div>
                       </>
                       <div className="absolute self-end top-14 mr-4">
                         <button

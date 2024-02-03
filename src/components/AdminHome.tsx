@@ -57,13 +57,16 @@ export default function AdminHome() {
   const handleNewLink = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/add-link", {
-        _id: userData?._id,
-        links: [
-          ...(userData?.links || []),
-          { link: newLink, title: linkTitle },
-        ],
-      });
+      const response = await axios.post(
+        "https://mylink-backend.onrender.com/add-link",
+        {
+          _id: userData?._id,
+          links: [
+            ...(userData?.links || []),
+            { link: newLink, title: linkTitle },
+          ],
+        }
+      );
       if (setUserData)
         setUserData((userData) => ({
           ...userData,

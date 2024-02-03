@@ -177,7 +177,7 @@ export default function AdminHome() {
           </div>
         )}
         {showAddLink && (
-          <div className="container absolute rounded link-form bg-white py-4">
+          <div className="container absolute top-48 rounded link-form bg-white py-4">
             <div className="flex flex-row justify-end">
               <button
                 className="border-0 relative bg-transparent bottom-3"
@@ -206,7 +206,7 @@ export default function AdminHome() {
                   ></input>
                   <button
                     type="submit"
-                    className="w-60 submit rounded-pill ml-2 p-2 border-0 text-white font-bold"
+                    className="bg-green-500 w-60 submit rounded-pill ml-2 p-2 border-0 text-white font-bold"
                   >
                     Add
                   </button>

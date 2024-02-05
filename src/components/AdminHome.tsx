@@ -88,8 +88,9 @@ export default function AdminHome() {
     try {
       const response = await axios.get("//api.instagram.com/oauth/authorize", {
         params: {
-          client_id: import.meta.env.VITE_INSTAGRAM_APP_ID,
-          redirect_uri: import.meta.env.VITE_REDIRECT_URI,
+          client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
+          redirect_uri:
+            import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI + { username },
           scope: "user_profile,user_media",
           response_type: "code",
         },

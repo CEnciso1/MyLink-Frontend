@@ -90,7 +90,7 @@ export default function AdminHome() {
         params: {
           client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
           redirect_uri:
-            import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI + { username },
+            import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI + username,
           scope: "user_profile,user_media",
           response_type: "code",
         },

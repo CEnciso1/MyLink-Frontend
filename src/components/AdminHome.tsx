@@ -86,7 +86,7 @@ export default function AdminHome() {
   ) => {
     e.preventDefault();
     try {
-      const response = await axios.get("//api.instagram.com/oauth/authorize", {
+      const response = await axios.post("//api.instagram.com/oauth/authorize", {
         params: {
           client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
           redirect_uri:

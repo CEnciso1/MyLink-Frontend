@@ -87,19 +87,11 @@ export default function AdminHome() {
     e.preventDefault();
     try {
       const response = await axios.post("//api.instagram.com/oauth/authorize", {
-        params: {
-          client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
-          redirect_uri:
-            import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI + username,
-          scope: "user_profile,user_media",
-          response_type: "code",
-        },
-        withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-        },
+        client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
+        redirect_uri:
+          import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI + username,
+        scope: "user_profile,user_media",
+        response_type: "code",
       });
     } catch (error) {
       console.log(error);

@@ -4,24 +4,29 @@ import axios from "axios";
 import { useAuth } from "../auth/AuthContext";
 
 function Home() {
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    setUserData,
+    userData,
+    loading,
+  } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState(false);
-  const [data, setData] = useState({
-    _id: null,
-    email: null,
-    username: null,
-    password: null,
-  });
+  const navigate = useNavigate();
+  console.log(userData);
+  const [data, setData] = useState(userData);
 
-  const { isAuthenticated, setIsAuthenticated, setUserData } = useAuth();
-
+  console.log("auth", isAuthenticated, loading);
   useEffect(() => {
-    console.log("succesful signin");
-    if (isAuthenticated && data.username) {
-      navigate("/admin/" + data.username);
+    if (!loading) {
+      if (isAuthenticated && userData?.username) {
+        navigate("/admin/" + userData?.username);
+      }
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, loading]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     //Attempt sign in if not display error
@@ -36,6 +41,8 @@ function Home() {
         },
         { withCredentials: true }
       );
+      console.log(response);
+      localStorage.setItem("token", response.data.token);
       if (response.data.success) {
         if (setIsAuthenticated) {
           setData(response.data.user);
@@ -50,7 +57,6 @@ function Home() {
     }
   };
 
-  const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       {alert && (

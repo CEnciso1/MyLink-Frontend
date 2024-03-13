@@ -25,7 +25,9 @@ export default function AdminHome() {
     Array(userData?.links.length).fill(false)
   );
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(userData);
+  }, []);
 
   const optionClick = () => {
     setShowLinks((state) => !state);
@@ -68,7 +70,8 @@ export default function AdminHome() {
             ...(userData?.links || []),
             { link: newLink, title: linkTitle },
           ],
-        }
+        },
+        { withCredentials: true }
       );
       if (setUserData)
         setUserData((userData) => ({
@@ -86,21 +89,20 @@ export default function AdminHome() {
   ) => {
     e.preventDefault();
     try {
-      const response = await axios.get("//api.instagram.com/oauth/authorize", {
-        params: {
-          client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
-          redirect_uri:
-            import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI + username,
-          scope: "user_profile,user_media",
-          response_type: "code",
-        },
-        withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-        },
-      });
+      const response = await axios.get(
+        "https://mylink-backend.onrender.com/instagram-api",
+        {
+          params: {
+            client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
+            redirect_uri: import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI,
+            scope: "user_profile,user_media",
+            response_type: "code",
+          },
+          withCredentials: true,
+        }
+      );
+      window.open(response.data, "_blank");
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -139,7 +141,8 @@ export default function AdminHome() {
           _id: userData?._id,
           index: index,
           newTitle: newTitle,
-        }
+        },
+        { withCredentials: true }
       );
       if (userData && setUserData) {
         userData.links[index].title = newTitle;

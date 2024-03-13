@@ -1,6 +1,7 @@
 import react from "react";
 export interface auth {
   isAuthenticated: Boolean;
+  loading: Boolean;
   setIsAuthenticated: react.Dispatch<react.SetStateAction<boolean>>;
   userData: {
     _id: string;

@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../auth/AuthContext";
 
 export default function Logout() {
   const navigate = useNavigate();
+  const { setIsAuthenticated } = useAuth();
 
   const handleLogout = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -12,12 +14,13 @@ export default function Logout() {
     try {
       const response = await axios.post(
         "https://mylink-backend.onrender.com/logout",
-        {},
         {
           withCredentials: true,
         }
       );
       console.log(response);
+      if (setIsAuthenticated) setIsAuthenticated(false);
+      localStorage.removeItem("token");
       navigate("/");
     } catch (error) {
       console.log("ERROR", error);

@@ -14,6 +14,7 @@
     "@clerk/clerk-react": "^4.29.0",
     "@types/dotenv": "^8.2.0",
     "axios": "^1.6.2",
+    "cors-anywhere": "^0.4.4",
     "dotenv": "^16.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -30,6 +31,7 @@
     "eslint": "^8.53.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "http-proxy-middleware": "^2.0.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "vite": "^5.0.0"

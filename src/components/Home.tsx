@@ -41,7 +41,7 @@ function Home() {
         },
         { withCredentials: true }
       );
-      console.log(response);
+      console.log("response", response);
       localStorage.setItem("token", response.data.token);
       if (response.data.success) {
         if (setIsAuthenticated) {

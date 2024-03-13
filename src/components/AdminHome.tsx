@@ -26,7 +26,6 @@ export default function AdminHome() {
   );
 
   useEffect(() => {
-    console.log(userData);
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }, []);
@@ -47,7 +46,8 @@ export default function AdminHome() {
         {
           _id: userData?._id,
           link: link,
-        }
+        },
+        { withCredentials: true }
       );
       console.log("response", response);
       const temp = userData?.links.filter((item) => item !== link);

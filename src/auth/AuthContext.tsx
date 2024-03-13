@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
       if (token) {
         try {
           const response = await axios.post(
-            "https://mylink-frontend.onrender.com/auth",
+            "https://mylink-backend.onrender.com/auth",
             {
               token: token,
             }

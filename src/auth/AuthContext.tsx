@@ -26,9 +26,12 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
 
       if (token) {
         try {
-          const response = await axios.post("http://localhost:5000/auth", {
-            token: token,
-          });
+          const response = await axios.post(
+            "https://mylink-frontend.onrender.com/auth",
+            {
+              token: token,
+            }
+          );
           setIsAuthenticated(response.data.result as boolean);
           delete response.data["result"];
           console.log("auth-context", response.data);

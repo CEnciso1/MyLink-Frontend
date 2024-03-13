@@ -27,6 +27,8 @@ export default function AdminHome() {
 
   useEffect(() => {
     console.log(userData);
+    const token = localStorage.getItem("token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }, []);
 
   const optionClick = () => {

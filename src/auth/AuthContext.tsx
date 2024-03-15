@@ -46,19 +46,20 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
     authenticateToken();
   }, []);
 
-  return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated: isAuthenticated,
-        setIsAuthenticated: setIsAuthenticated,
-        userData: userData,
-        setUserData: setUserData,
-        loading: loading,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  if (!loading)
+    return (
+      <AuthContext.Provider
+        value={{
+          isAuthenticated: isAuthenticated,
+          setIsAuthenticated: setIsAuthenticated,
+          userData: userData,
+          setUserData: setUserData,
+          loading: loading,
+        }}
+      >
+        {children}
+      </AuthContext.Provider>
+    );
 };
 
 export const useAuth = () => useContext(AuthContext);

@@ -104,7 +104,6 @@ export default function AdminHome() {
         }
       );
       window.open(response.data, "_blank");
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }

@@ -6,6 +6,7 @@ import AdminHome from "./components/AdminHome";
 import RequireAuth from "./auth/RequireAuth";
 import Account from "./components/Account";
 import { AuthProvider } from "./auth/AuthContext";
+import InstagramAuth from "./components/InstagramAuth";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/:username" element={<Account />} />
           <Route element={<RequireAuth />}>
             <Route path="/admin/:username" element={<AdminHome />} />
+            <Route path="/instagram-auth" element={<InstagramAuth />} />
           </Route>
         </Routes>
       </AuthProvider>

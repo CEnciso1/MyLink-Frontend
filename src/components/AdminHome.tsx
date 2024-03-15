@@ -103,6 +103,7 @@ export default function AdminHome() {
           withCredentials: true,
         }
       );
+      console.log("client_id", import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI);
       window.open(response.data, "_blank");
     } catch (error) {
       console.log(error);

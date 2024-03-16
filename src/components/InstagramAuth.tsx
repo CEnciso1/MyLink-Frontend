@@ -9,6 +9,9 @@ function InstagramAuth() {
   console.log(searchParams);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
     if (searchParams.get("code")) {
       getToken1(searchParams);
     }

@@ -10,32 +10,50 @@ function InstagramAuth() {
 
   useEffect(() => {
     if (searchParams.get("code")) {
-      const getToken = async () => {
-        const data = {
-          client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
-          client_secret: import.meta.env.VITE_APP_INSTAGRAM_SECRET,
-          code: searchParams.get("code"),
-          grant_type: "authorization_code",
-          redirect_uri: import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI,
-        };
-        const requestBody = querystring.stringify(data);
-        const response = await axios.post(
-          "https://api.instagram.com/oauth/access_token",
-          requestBody,
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          }
-        );
-        console.log("RESPONSE", response.data);
-      };
-      getToken();
+      getToken1(searchParams);
     }
   }, []);
 
   return <div>test</div>;
 }
+
+// const getToken = async () => {
+//   const data = {
+//     client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
+//     client_secret: import.meta.env.VITE_APP_INSTAGRAM_SECRET,
+//     code: searchParams.get("code"),
+//     grant_type: "authorization_code",
+//     redirect_uri: import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI,
+//   };
+//   const requestBody = querystring.stringify(data);
+//   const response = await axios.post(
+//     "https://api.instagram.com/oauth/access_token",
+//     requestBody,
+//     {
+//       headers: {
+//         "Content-Type": "application/x-www-form-urlencoded",
+//       },
+//     }
+//   );
+//   console.log("RESPONSE", response.data);
+// };
+
+const getToken1 = async (searchParams: URLSearchParams) => {
+  const data = {
+    client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
+    client_secret: import.meta.env.VITE_APP_INSTAGRAM_SECRET,
+    code: searchParams.get("code"),
+    grant_type: "authorization_code",
+    redirect_uri: import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI,
+  };
+  const requestBody = querystring.stringify(data);
+  console.log(requestBody);
+  const response = await axios.post(
+    "https://mylink-backend.onrender.com/instagram-auth",
+    requestBody
+  );
+  console.log("RESPONSE", response.data);
+};
 
 // const getLongAccessToken = async () =>{
 //   try{

@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
   useEffect(() => {
     const authenticateToken = async () => {
       const token = localStorage.getItem("token");
-
+      console.log("Test");
       if (token) {
         try {
           const response = await axios.post(
@@ -41,6 +41,8 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
         } finally {
           setLoading(false);
         }
+      } else {
+        setLoading(false);
       }
     };
     authenticateToken();

@@ -55,7 +55,6 @@ const getToken1 = async (searchParams: URLSearchParams) => {
     "https://mylink-backend.onrender.com/instagram-auth",
     requestBody
   );
-  console.log("RESPONSE", response.data);
 };
 
 // const getLongAccessToken = async () =>{

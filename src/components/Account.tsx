@@ -10,7 +10,7 @@ function Account() {
   const { username } = useParams();
   const [links, setLinks] = useState(Array());
   const [instagramApi, setInstagramApi] = useState();
-  const [instagramApiData, setInstagramApiData] = useState();
+  const [instagramApiData, setInstagramApiData] = useState(Array());
   const [haveApi, setHaveApi] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
   const navigate = useNavigate();
@@ -33,11 +33,12 @@ function Account() {
             typeof response.data.apis.instagram.access_token
           );
           setInstagramApi(response.data.apis.instagram);
-          const responseData = fetchInstagramApiData(
+          const responseData = await fetchInstagramApiData(
             response.data.apis.instagram.token,
             response.data.apis.instagram.user_id
           );
           console.log(responseData);
+          setInstagramApiData(responseData);
         }
         if (response.data.links) {
           setLinks(response.data.links);
@@ -107,7 +108,19 @@ function Account() {
               )}
             </div>
           )}
-          {haveApi && <div></div>}
+          {haveApi && (
+            <div className="top-44 absolute flex flex-col py-3 w-5/6 justify-center">
+              {!showLinks && (
+                <div>
+                  {instagramApiData.map((item) => (
+                    <div>
+                      <img className="h-52 w-40" src={item.media_url}></img>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

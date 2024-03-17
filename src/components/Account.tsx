@@ -28,12 +28,14 @@ function Account() {
         }
         if (response.data.apis.instagram) {
           console.log(response.data.apis.instagram);
+          console.log(
+            typeof response.data.apis.instagram.user_id,
+            typeof response.data.apis.instagram.access_token
+          );
           setInstagramApi(response.data.apis.instagram);
-          const u_id = response.data.apis.instagram.user_id;
-          const u_idString = u_id.toString();
           const responseData = fetchInstagramApiData(
             response.data.apis.instagram.access_token,
-            "jdjdjsbbd"
+            response.data.apis.instagram.user_id
           );
           console.log(responseData);
         }
@@ -49,7 +51,7 @@ function Account() {
 
   const fetchInstagramApiData = async (
     access_token: string,
-    user_id: string
+    user_id: number
   ) => {
     const response = await axios.get(
       `https://graph.instagram.com/${user_id}/media`,
@@ -60,6 +62,7 @@ function Account() {
         },
       }
     );
+    console.log(response.data);
     return response.data;
   };
 

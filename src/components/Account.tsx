@@ -29,9 +29,11 @@ function Account() {
         if (response.data.apis.instagram) {
           console.log(response.data.apis.instagram);
           setInstagramApi(response.data.apis.instagram);
+          const u_id = response.data.apis.instagram.user_id;
+          const u_idString = u_id.toString();
           const responseData = fetchInstagramApiData(
             response.data.apis.instagram.access_token,
-            response.data.apis.instagram.user_id
+            u_idString
           );
           console.log(responseData);
         }

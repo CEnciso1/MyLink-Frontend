@@ -34,7 +34,7 @@ function Account() {
           );
           setInstagramApi(response.data.apis.instagram);
           const responseData = fetchInstagramApiData(
-            response.data.apis.instagram.access_token,
+            response.data.apis.instagram.token,
             response.data.apis.instagram.user_id
           );
           console.log(responseData);

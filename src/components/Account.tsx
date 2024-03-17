@@ -33,7 +33,7 @@ function Account() {
           const u_idString = u_id.toString();
           const responseData = fetchInstagramApiData(
             response.data.apis.instagram.access_token,
-            u_idString
+            "jdjdjsbbd"
           );
           console.log(responseData);
         }

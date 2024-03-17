@@ -112,11 +112,11 @@ function Account() {
             <div className="top-44 absolute flex flex-col py-3 w-5/6 justify-center">
               {!showLinks && (
                 <div>
-                  {/* {instagramApiData.map((item) => (
+                  {instagramApiData.map((item) => (
                     <div>
                       <img className="h-52 w-40" src={item.media_url}></img>
                     </div>
-                  ))} */}
+                  ))}
                 </div>
               )}
             </div>

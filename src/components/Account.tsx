@@ -38,7 +38,7 @@ function Account() {
             response.data.apis.instagram.user_id
           );
           console.log(responseData);
-          setInstagramApiData(responseData);
+          setInstagramApiData(responseData.data);
         }
         if (response.data.links) {
           setLinks(response.data.links);
@@ -63,7 +63,7 @@ function Account() {
         },
       }
     );
-    console.log(response.data);
+    console.log(response.data.data);
     return response.data;
   };
 
@@ -112,11 +112,11 @@ function Account() {
             <div className="top-44 absolute flex flex-col py-3 w-5/6 justify-center">
               {!showLinks && (
                 <div>
-                  {instagramApiData.map((item) => (
+                  {/* {instagramApiData.map((item) => (
                     <div>
                       <img className="h-52 w-40" src={item.media_url}></img>
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               )}
             </div>

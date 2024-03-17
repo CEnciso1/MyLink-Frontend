@@ -58,7 +58,7 @@ function Account() {
       {
         params: {
           access_token: access_token,
-          fields: "media_type, media_url",
+          fields: "media_type, media_url, permalink, caption",
         },
       }
     );

@@ -46,7 +46,7 @@ function Account() {
 
   const fetchInstagramApiData = async (
     access_token: string,
-    user_id: number
+    user_id: string
   ) => {
     const response = await axios.get(
       `https://graph.instagram.com/${user_id}/media`,

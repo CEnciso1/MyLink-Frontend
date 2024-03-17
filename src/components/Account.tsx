@@ -27,6 +27,7 @@ function Account() {
           setHaveApi(true);
         }
         if (response.data.apis.instagram) {
+          console.log(response.data.apis.instagram);
           setInstagramApi(response.data.apis.instagram);
           const responseData = fetchInstagramApiData(
             response.data.apis.instagram.access_token,

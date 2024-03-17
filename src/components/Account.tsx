@@ -4,10 +4,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios, { AxiosRequestConfig } from "axios";
 import blocksImage from "../assets/blocks.svg";
 import linkImage from "../assets/link.svg";
+import { userData } from "../interfaces/UserData";
 
 function Account() {
   const { username } = useParams();
   const [links, setLinks] = useState(Array());
+  const [instagramApi, setInstagramApi] = useState();
+  const [instagramApiData, setInstagramApiData] = useState();
+  const [haveApi, setHaveApi] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
   const navigate = useNavigate();
 
@@ -19,7 +23,17 @@ function Account() {
           `https://mylink-backend.onrender.com/account-data/${username}`
         );
         console.log(response);
-        console.log("test");
+        if (response.data.apis) {
+          setHaveApi(true);
+        }
+        if (response.data.apis.instagram) {
+          setInstagramApi(response.data.apis.instagram);
+          const responseData = fetchInstagramApiData(
+            response.data.apis.instagram.access_token,
+            response.data.apis.instagram.user_id
+          );
+          console.log(responseData);
+        }
         if (response.data.links) {
           setLinks(response.data.links);
         }
@@ -29,6 +43,22 @@ function Account() {
     };
     fetchData();
   }, []);
+
+  const fetchInstagramApiData = async (
+    access_token: string,
+    user_id: number
+  ) => {
+    const response = await axios.get(
+      `https://graph.instagram.com/${user_id}/media`,
+      {
+        params: {
+          access_token: access_token,
+          fields: "media_type, media_url",
+        },
+      }
+    );
+    return response.data;
+  };
 
   const handleLinkClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -47,7 +77,7 @@ function Account() {
           >
             <img
               className="option-image h-10 w-10"
-              src={showLinks ? linkImage : blocksImage}
+              src={showLinks ? blocksImage : linkImage}
             ></img>
           </button>
         </div>
@@ -71,6 +101,7 @@ function Account() {
               )}
             </div>
           )}
+          {haveApi && <div></div>}
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ export interface auth {
     password: string;
     __v: null;
     links: any[];
+    apis: {};
   };
   setUserData: react.Dispatch<
     react.SetStateAction<{
@@ -19,6 +20,7 @@ export interface auth {
       password: string;
       __v: null;
       links: any[];
+      apis: {};
     }>
   >;
 }

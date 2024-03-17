@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
     password: "",
     __v: null,
     links: Array(),
+    apis: {},
   });
   const [loading, setLoading] = useState(true);
 

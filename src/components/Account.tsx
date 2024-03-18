@@ -115,7 +115,7 @@ function Account() {
                   {instagramApiData.map((item) => (
                     <div>
                       <img
-                        className="h-80 max-w-full rounded-2 mt-3"
+                        className="max-w-full rounded-2 mt-3"
                         src={item.media_url}
                       ></img>
                     </div>

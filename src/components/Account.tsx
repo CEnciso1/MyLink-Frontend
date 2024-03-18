@@ -109,7 +109,7 @@ function Account() {
             </div>
           )}
           {haveApi && (
-            <div className="mt-10">
+            <div className="top-20 absolute">
               {!showLinks && (
                 <div className="flex justify-content-evenly flex-wrap">
                   {instagramApiData.map((item) => (

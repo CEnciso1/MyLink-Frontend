@@ -109,13 +109,13 @@ function Account() {
             </div>
           )}
           {haveApi && (
-            <div>
+            <div className="mt-5">
               {!showLinks && (
                 <div className=" flex justify-content-evenly flex-wrap">
                   {instagramApiData.map((item) => (
                     <div>
                       <img
-                        className="h-80 max-w-full rounded-2"
+                        className="h-80 max-w-full rounded-2 mt-3"
                         src={item.media_url}
                       ></img>
                     </div>

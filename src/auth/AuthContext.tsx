@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
           );
           setIsAuthenticated(response.data.result as boolean);
           delete response.data["result"];
+          console.log(response.data, response);
           console.log("auth-context", response.data);
           setUserData(response.data);
         } catch (error) {

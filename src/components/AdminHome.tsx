@@ -22,6 +22,7 @@ export default function AdminHome() {
   const [newTitle, setNewTitle] = useState("");
 
   const { userData, setUserData } = useAuth();
+  console.log(userData);
   const [editFlags, setEditFlags] = useState(
     Array(userData?.links.length).fill(false)
   );

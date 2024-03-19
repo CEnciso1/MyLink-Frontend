@@ -172,11 +172,11 @@ export default function AdminHome() {
             ></img>
           </button>
         </div>
-        {/* <div className="absolute top-32 font-bold text-2xl mt-3">
+        <div className="absolute top-32 font-bold text-2xl mt-3">
           <a href={`https://mylink-frontend.onrender.com/${username}`}>
             @{username}
           </a>
-        </div> */}
+        </div>
         {showLinks && (
           <div className="relative flex flex-row justify-end mr-4 top-16 w-100 items-end">
             <button
@@ -260,7 +260,7 @@ export default function AdminHome() {
                           {item.link}
                         </div>
                       </>
-                      <div className="absolute self-end mr-4">
+                      <div className="absolute self-end mr-4 z-10">
                         <button
                           className="border-0 bg-transparent"
                           onClick={(e) => handleDeleteLink(e, item)}

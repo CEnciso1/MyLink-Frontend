@@ -90,43 +90,37 @@ function Account() {
         </div>
         <div className="font-bold text-2xl mt-3">@{username}</div>
         <div className="flex flex-col items-center">
-          {links && (
-            <div className="top-44 absolute flex flex-col py-3 w-5/6 justify-center">
-              {showLinks && (
-                <div>
-                  {links.map((item, index) => (
-                    <div>
-                      <button
-                        className="bg-white w-100 mt-2 mb-2 rounded-3xl py-3 fw-bolder"
-                        onClick={(e) => handleLinkClick(e, item.link)}
-                      >
-                        {item.title}
-                      </button>
+          <div className="top-44 absolute flex flex-col py-3 w-5/6 justify-center">
+            {showLinks && (
+              <div>
+                {links.map((item, index) => (
+                  <div>
+                    <button
+                      className="bg-white w-100 mt-2 mb-2 rounded-3xl py-3 fw-bolder"
+                      onClick={(e) => handleLinkClick(e, item.link)}
+                    >
+                      {item.title}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+            {!showLinks && (
+              <div className="flex justify-content-evenly flex-wrap">
+                {instagramApiData.map((item) => (
+                  <div>
+                    <img
+                      className="max-w-full rounded-2 "
+                      src={item.media_url}
+                    ></img>
+                    <div className="font-bold text-xl mt-3 mb-3">
+                      {item.caption}
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-          {haveApi && (
-            <div className="mt-5">
-              {!showLinks && (
-                <div className="flex justify-content-evenly flex-wrap">
-                  {instagramApiData.map((item) => (
-                    <div>
-                      <img
-                        className="max-w-full rounded-2 "
-                        src={item.media_url}
-                      ></img>
-                      <div className="font-bold text-xl mt-3 mb-3">
-                        {item.caption}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

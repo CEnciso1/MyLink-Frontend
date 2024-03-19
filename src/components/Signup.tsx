@@ -88,7 +88,7 @@ function Signup() {
           ></input>
         </div>
         <div className="mt-3 w-4/6">
-          <label className="fw-bold">email</label>
+          <label className="fw-bold">password</label>
           <input
             type="password"
             className=" w-100 form-control rounded-3xl border-0 p-2"

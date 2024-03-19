@@ -172,6 +172,11 @@ export default function AdminHome() {
             ></img>
           </button>
         </div>
+        <div className="font-bold text-2xl mt-3">
+          <a href={`https://mylink-frontend.onrender.com/${username}`}>
+            @{username}
+          </a>
+        </div>
         {showLinks && (
           <div className="relative flex flex-row justify-end mr-4 top-16 w-100 items-end">
             <button

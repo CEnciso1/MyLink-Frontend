@@ -115,7 +115,7 @@ function Account() {
                       className="max-w-full rounded-2 "
                       src={item.media_url}
                     ></img>
-                    <div className="font-bold text-xl mt-3 mb-3">
+                    <div className="font-bold text-xl mt-3 mb-3 ">
                       {item.caption}
                     </div>
                   </div>

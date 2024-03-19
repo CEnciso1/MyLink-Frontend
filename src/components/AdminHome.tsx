@@ -161,7 +161,7 @@ export default function AdminHome() {
     <div className="h-screen w-screen">
       <Logout></Logout>
       <div className="container h-full flex flex-col items-center p-0">
-        <div className="relative top-32 z-10 ">
+        <div className="relative top-32 z-11">
           <button
             className="border-0 bg-transparent h-10 w-10"
             onClick={() => optionClick()}
@@ -172,11 +172,11 @@ export default function AdminHome() {
             ></img>
           </button>
         </div>
-        <div className="absolute top-12 font-bold text-2xl mt-3">
+        {/* <div className="absolute top-32 font-bold text-2xl mt-3">
           <a href={`https://mylink-frontend.onrender.com/${username}`}>
             @{username}
           </a>
-        </div>
+        </div> */}
         {showLinks && (
           <div className="relative flex flex-row justify-end mr-4 top-16 w-100 items-end">
             <button
@@ -227,7 +227,7 @@ export default function AdminHome() {
           </div>
         )}
         {!showAddLink && (
-          <div className="container top-44  absolute py-3 px-10 rounded-2">
+          <div className="container top-44 absolute py-3 px-10 rounded-2">
             {showLinks && (
               <div>
                 {userData?.links.map((item, index) => (

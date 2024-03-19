@@ -47,3 +47,14 @@
 .t {
   width: fit-content;
 }
+@media (max-width: 600px) {
+  .add-link {
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 2000px) {
+  .add-link {
+    margin-right: 10%;
+  }
+}

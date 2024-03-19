@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/AdminHome.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Logout from "./Logout";
@@ -178,7 +179,7 @@ export default function AdminHome() {
           </a>
         </div> */}
         {showLinks && (
-          <div className="relative flex flex-row justify-end mr-4 top-16 w-100 items-end">
+          <div className="absolute top-36 end-0 add-link">
             <button
               className="bg-white rounded-md py-2 px-2 mt-2 font-bold"
               onClick={() => setShowAddLink((state) => !state)}
@@ -188,7 +189,7 @@ export default function AdminHome() {
           </div>
         )}
         {showAddLink && (
-          <div className="container absolute top-48 rounded link-form bg-white py-4">
+          <div className="container absolute top-52 rounded link-form bg-white py-4">
             <div className="flex flex-row justify-end">
               <button
                 className="border-0 relative bg-transparent bottom-3"
@@ -227,7 +228,7 @@ export default function AdminHome() {
           </div>
         )}
         {!showAddLink && (
-          <div className="container top-44 absolute py-3 px-10 rounded-2">
+          <div className="container top-52 absolute py-3 px-10 rounded-2">
             {showLinks && (
               <div>
                 {userData?.links.map((item, index) => (

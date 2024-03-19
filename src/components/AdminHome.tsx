@@ -172,11 +172,11 @@ export default function AdminHome() {
             ></img>
           </button>
         </div>
-        <div className="absolute top-32 font-bold text-2xl mt-3">
+        {/* <div className="absolute top-32 font-bold text-2xl mt-3">
           <a href={`https://mylink-frontend.onrender.com/${username}`}>
             @{username}
           </a>
-        </div>
+        </div> */}
         {showLinks && (
           <div className="relative flex flex-row justify-end mr-4 top-16 w-100 items-end">
             <button
@@ -233,7 +233,7 @@ export default function AdminHome() {
                 {userData?.links.map((item, index) => (
                   <div className="bg-white h-fit w-100 py-3 mt-2 rounded-2">
                     <div className="relative h-4/5 ml-8 flex flex-col">
-                      <>
+                      <div>
                         {!editFlags[index] ? (
                           <button
                             className="border-0 p-0 content bg-white font-bold w-fit"
@@ -259,7 +259,7 @@ export default function AdminHome() {
                         <div className="w-5/6 h-fit break-words">
                           {item.link}
                         </div>
-                      </>
+                      </div>
                       <div className="absolute self-end mr-4 z-10">
                         <button
                           className="border-0 bg-transparent"

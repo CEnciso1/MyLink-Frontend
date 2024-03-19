@@ -173,11 +173,11 @@ export default function AdminHome() {
             ></img>
           </button>
         </div>
-        {/* <div className="absolute top-32 font-bold text-2xl mt-3">
+        <div className="absolute top-12 font-bold text-2xl mt-3">
           <a href={`https://mylink-frontend.onrender.com/${username}`}>
             @{username}
           </a>
-        </div> */}
+        </div>
         {showLinks && (
           <div className="absolute top-36 end-0 add-link">
             <button

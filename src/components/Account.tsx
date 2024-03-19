@@ -76,7 +76,7 @@ function Account() {
 
   return (
     <div className="h-screen">
-      <div className="container flex flex-col items-center h-100">
+      <div className="flex flex-col items-center h-100">
         <div className="relative top-32 z-10 ">
           <button
             className="border-0 bg-transparent h-10 w-10"
@@ -111,11 +111,8 @@ function Account() {
               <div className="flex justify-content-evenly flex-wrap">
                 {instagramApiData.map((item) => (
                   <div>
-                    <img
-                      className="max-w-full rounded-2 "
-                      src={item.media_url}
-                    ></img>
-                    <div className="font-bold text-xl py-3 bg-white rounded-2">
+                    <img className="max-w-full" src={item.media_url}></img>
+                    <div className="font-bold text-xl py-3 bg-white text-center">
                       {item.caption}
                     </div>
                   </div>

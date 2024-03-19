@@ -172,7 +172,7 @@ export default function AdminHome() {
             ></img>
           </button>
         </div>
-        <div className="font-bold text-2xl mt-3">
+        <div className="absolute top-12 font-bold text-2xl mt-3">
           <a href={`https://mylink-frontend.onrender.com/${username}`}>
             @{username}
           </a>

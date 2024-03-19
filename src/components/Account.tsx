@@ -88,7 +88,9 @@ function Account() {
             ></img>
           </button>
         </div>
-        <div className="font-bold text-2xl mt-3">@{username}</div>
+        <div className="absolute top-12 font-bold text-2xl mt-3">
+          @{username}
+        </div>
         <div className="flex flex-col items-center">
           <div className="top-44 absolute flex flex-col py-3 w-5/6 justify-center">
             {showLinks && (

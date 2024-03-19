@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
           delete response.data["result"];
           console.log(response.data, response);
           console.log("auth-context", response.data);
-          setUserData(response.data);
+          setUserData(response.data._doc);
         } catch (error) {
           console.log(error);
         } finally {

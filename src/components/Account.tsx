@@ -169,7 +169,7 @@ function Account() {
               </div>
             )}
             {!showLinks && (
-              <div className="flex flex-col justify-content-evenly">
+              <div className="flex flex flex-wrap justify-content-center">
                 {!showInstagram && (
                   <button
                     className="bg-transparent border-0 w-36 h-36"

@@ -62,7 +62,7 @@ function Home() {
       {alert && (
         <div
           className="alert absolute mb-5 alert-danger"
-          style={{ top: "180px" }}
+          style={{ top: "110px" }}
           role="alert"
         >
           Email or password was incorrect

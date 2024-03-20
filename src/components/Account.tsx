@@ -4,13 +4,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios, { AxiosRequestConfig } from "axios";
 import blocksImage from "../assets/blocks.svg";
 import linkImage from "../assets/link.svg";
+import querystring from "querystring";
 import { userData } from "../interfaces/UserData";
+import { access } from "fs";
 
 function Account() {
   const { username } = useParams();
   const [links, setLinks] = useState(Array());
   const [instagramApi, setInstagramApi] = useState();
   const [instagramApiData, setInstagramApiData] = useState(Array());
+  const [spotifyApi, setSpotifyApi] = useState();
+  const [spotifyApiData, setSpotifyApiData] = useState();
   const [haveApi, setHaveApi] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
   const navigate = useNavigate();
@@ -32,14 +36,23 @@ function Account() {
               typeof response.data.apis.instagram.user_id,
               typeof response.data.apis.instagram.access_token
             );
+
+            setInstagramApi(response.data.apis.instagram);
+            const responseData = await fetchInstagramApiData(
+              response.data.apis.instagram.token,
+              response.data.apis.instagram.user_id
+            );
+            console.log(responseData);
+            setInstagramApiData(responseData.data);
           }
-          setInstagramApi(response.data.apis.instagram);
-          const responseData = await fetchInstagramApiData(
-            response.data.apis.instagram.token,
-            response.data.apis.instagram.user_id
-          );
-          console.log(responseData);
-          setInstagramApiData(responseData.data);
+          if (response.data.spotify) {
+            const spotifyResponse = await fetchSpotifyApiData(
+              response.data.apis.spotify.token,
+              response.data.apis.spotify.refresh_token,
+              response.data.apis.spotify.client_id
+            );
+            console.log(spotifyResponse);
+          }
         }
         if (response.data.links) {
           setLinks(response.data.links);
@@ -66,6 +79,49 @@ function Account() {
     );
     console.log(response.data.data);
     return response.data;
+  };
+
+  const fetchSpotifyApiData = async (
+    access_token: string,
+    refresh_token: string,
+    client_id: string
+  ) => {
+    const body = {
+      access_token: access_token,
+      refresh_token: refresh_token,
+      client_id: client_id,
+    };
+    console.log(body);
+    const requestBody = querystring.stringify(body);
+    try {
+      const refreshResponse = await axios.post(
+        "https://accounts.spotify.com/api/token",
+        requestBody,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+      console.log(refreshResponse);
+      //Get media
+      const spotifyMedia = await axios.get(
+        "https://api.spotify.com/v1/me/top/artists",
+        {
+          params: {
+            time_range: "medium_term",
+            limit: 10,
+          },
+          headers: {
+            Authorization: `Bearer ${refreshResponse.data.access_token}`,
+          },
+        }
+      );
+      console.log(spotifyMedia.data);
+      setSpotifyApiData(spotifyMedia.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleLinkClick = (

@@ -24,7 +24,9 @@ function InstagramAuth() {
 
   return (
     <div className="h-screen">
-      <div className="text-center bold text-xl">{displayMessage}</div>
+      <div className="text-center flex justify-content-center align-content-center font-bold text-xl">
+        {displayMessage}
+      </div>
     </div>
   );
 }

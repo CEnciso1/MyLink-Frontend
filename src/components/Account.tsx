@@ -92,23 +92,20 @@ function Account() {
     };
     console.log(body);
     const requestBody = querystring.stringify(body);
+    console.log(requestBody);
     try {
-      const payload = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: requestBody,
-      };
-      const t = await fetch("https://accounts.spotify.com/api/token", payload);
-      const response = await t.json();
-      console.log(response);
+      const buffer: Buffer = Buffer.from(
+        import.meta.env.VITE_APP_SPOTIFY_APP_ID +
+          ":" +
+          import.meta.env.VITE_APP_SPOTIFY_APP_SECRET
+      );
       const refreshResponse = await axios.post(
         "https://accounts.spotify.com/api/token",
         requestBody,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: "Basic " + buffer,
           },
         }
       );

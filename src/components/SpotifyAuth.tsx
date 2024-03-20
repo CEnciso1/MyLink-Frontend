@@ -5,13 +5,18 @@ import { useState, useEffect } from "react";
 
 function SpotifyAuth() {
   const [displayMessage, setDisplayMessage] = useState();
+  const searchParams = new URLSearchParams(window.location.search);
+  console.log(searchParams.get("code"));
+  const [code, setCode] = useState(searchParams.get("code"));
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
     const searchParams = new URLSearchParams(window.location.search);
     console.log(searchParams.get("code"));
     async () => {
+      console.log("async");
       if (searchParams.get("code")) {
         const response = await axios.post(
           "https://mylink-backend.onrender.com/spotify-api",
@@ -26,7 +31,7 @@ function SpotifyAuth() {
         console.log(response);
       }
     };
-  }, []);
+  }, [code]);
   return <div>SpotifyAuth</div>;
 }
 

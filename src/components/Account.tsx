@@ -7,6 +7,7 @@ import linkImage from "../assets/link.svg";
 import querystring from "querystring";
 import instagramImage from "../assets/instagram.svg";
 import spotifyImage from "../assets/spotify.svg";
+import closeImage from "../assets/close.svg";
 import { userData } from "../interfaces/UserData";
 import { access } from "fs";
 
@@ -19,6 +20,7 @@ function Account() {
   const [spotifyApiData, setSpotifyApiData] = useState();
   const [haveApi, setHaveApi] = useState(false);
   const [showInstagram, setShowInstagram] = useState(false);
+  const [showSpotify, setShowSpotify] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
   const navigate = useNavigate();
 
@@ -176,15 +178,48 @@ function Account() {
                 )}
 
                 {showInstagram && (
-                  <div className="flex justify-content-evenly flex-wrap">
-                    {instagramApiData.map((item) => (
-                      <div>
-                        <img className="max-w-full" src={item.media_url}></img>
-                        <div className="font-bold text-xl py-3 bg-white text-center">
-                          {item.caption}
+                  <div>
+                    <div className="flex flex-row justify-end">
+                      <button
+                        className="border-0 relative bg-transparent mb-3"
+                        onClick={() => setShowInstagram(false)}
+                      >
+                        <img src={closeImage}></img>
+                      </button>
+                    </div>
+                    <div className="flex justify-content-evenly flex-wrap">
+                      {instagramApiData.map((item) => (
+                        <div>
+                          <img
+                            className="max-w-full"
+                            src={item.media_url}
+                          ></img>
+                          <div className="font-bold text-xl py-3 bg-white text-center">
+                            {item.caption}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {!showSpotify && (
+                  <button
+                    className="bg-transparent border-0 mt-10 w-36 h-36"
+                    onClick={() => setShowSpotify(true)}
+                  >
+                    <img src={spotifyImage}></img>
+                  </button>
+                )}
+                {showSpotify && (
+                  <div>
+                    <div className="flex flex-row justify-end">
+                      <button
+                        className="border-0 relative bg-transparent mb-3"
+                        onClick={() => setShowInstagram(false)}
+                      >
+                        <img src={closeImage}></img>
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>

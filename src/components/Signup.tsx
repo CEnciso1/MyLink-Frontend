@@ -46,7 +46,7 @@ function Signup() {
         }
       );
       console.log(response.data.success);
-      if (response.data.success) navigate(`/admin/${username}`);
+      if (response.data.success) navigate("/admin/" + username);
       setAlert(!response.data.success);
       setAlertMessage(response.data.message);
     } catch (error) {

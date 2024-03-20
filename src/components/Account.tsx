@@ -48,7 +48,6 @@ function Account() {
           if (response.data.apis.spotify) {
             console.log("Spotify");
             const spotifyResponse = await fetchSpotifyApiData(
-              response.data.apis.spotify.token,
               response.data.apis.spotify.refresh_token,
               response.data.apis.spotify.client_id
             );
@@ -83,12 +82,11 @@ function Account() {
   };
 
   const fetchSpotifyApiData = async (
-    access_token: string,
     refresh_token: string,
     client_id: string
   ) => {
     const body = {
-      access_token: access_token,
+      grant_type: "refresh_token",
       refresh_token: refresh_token,
       client_id: client_id,
     };

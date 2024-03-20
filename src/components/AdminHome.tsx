@@ -6,6 +6,7 @@ import Logout from "./Logout";
 import blocksImage from "../assets/blocks.svg";
 import linkImage from "../assets/link.svg";
 import instagramImage from "../assets/instagram.svg";
+import spotifyImage from "../assets/spotify.svg";
 import deleteImage from "../assets/delete.svg";
 import closeImage from "../assets/close.svg";
 import editImage from "../assets/edit.svg";
@@ -100,6 +101,30 @@ export default function AdminHome() {
             client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
             redirect_uri: import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI,
             scope: "user_profile,user_media",
+            response_type: "code",
+          },
+          withCredentials: true,
+        }
+      );
+      console.log("client_id", import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI);
+      window.open(response.data, "_blank");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const connectSpotify = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(
+        "https://mylink-backend.onrender.com/spotify-api",
+        {
+          params: {
+            client_id: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
+            redirect_uri: import.meta.env.VITE_APP_SPOTIFY_REDIRECT_URI,
+            scope: "user-top-read",
             response_type: "code",
           },
           withCredentials: true,
@@ -277,12 +302,21 @@ export default function AdminHome() {
             )}
 
             {!showLinks && (
-              <button
-                className="bg-transparent border-0"
-                onClick={(e) => connectInstagram(e)}
-              >
-                <img src={instagramImage}></img>
-              </button>
+              <div className="flex justify-content-center">
+                <button
+                  className="bg-transparent border-0"
+                  onClick={(e) => connectInstagram(e)}
+                >
+                  <img src={instagramImage}></img>
+                </button>
+
+                <button
+                  className="bg-transparent border-0"
+                  onClick={(e) => connectSpotify(e)}
+                >
+                  <img src={spotifyImage}></img>
+                </button>
+              </div>
             )}
           </div>
         )}

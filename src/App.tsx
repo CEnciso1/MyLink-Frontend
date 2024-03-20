@@ -7,6 +7,7 @@ import RequireAuth from "./auth/RequireAuth";
 import Account from "./components/Account";
 import { AuthProvider } from "./auth/AuthContext";
 import InstagramAuth from "./components/InstagramAuth";
+import SpotifyAuth from "./components/SpotifyAuth";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="/admin/:username" element={<AdminHome />} />
             <Route path="/instagram-auth" element={<InstagramAuth />} />
+            <Route path="/spotify-auth" element={<SpotifyAuth />} />
           </Route>
         </Routes>
       </AuthProvider>

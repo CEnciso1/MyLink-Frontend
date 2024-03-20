@@ -93,9 +93,19 @@ function Account() {
     console.log(body);
     const requestBody = querystring.stringify(body);
     try {
+      const payload = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: requestBody,
+      };
+      const t = await fetch("https://accounts.spotify.com/api/token", payload);
+      const response = await t.json();
+      console.log(response);
       const refreshResponse = await axios.post(
         "https://accounts.spotify.com/api/token",
-        new URLSearchParams(body),
+        requestBody,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",

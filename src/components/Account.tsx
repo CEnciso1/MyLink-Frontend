@@ -206,14 +206,14 @@ function Account() {
                 )}
                 {!showSpotify && (
                   <button
-                    className="bg-transparent border-0 mt-10 w-36 h-36"
+                    className="bg-transparent border-0 mr-5 w-36 h-36"
                     onClick={() => setShowSpotify(true)}
                   >
                     <img src={spotifyImage}></img>
                   </button>
                 )}
                 {showSpotify && (
-                  <div className="mt-5">
+                  <div className="mt-5 w-100">
                     <div className="flex flex-row justify-end">
                       <button
                         className="border-0 relative bg-transparent mb-3"

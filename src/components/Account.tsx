@@ -22,6 +22,7 @@ function Account() {
   const [showInstagram, setShowInstagram] = useState(false);
   const [showSpotify, setShowSpotify] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -69,6 +70,8 @@ function Account() {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -138,118 +141,118 @@ function Account() {
   ) => {
     window.open(link, "_blank");
   };
-
-  return (
-    <div className="h-screen">
-      <div className="flex flex-col items-center h-100">
-        <div className="relative top-32 z-10 ">
-          <button
-            className="border-0 bg-transparent h-10 w-10"
-            onClick={() => setShowLinks((state) => !state)}
-          >
-            <img
-              className="option-image h-10 w-10"
-              src={showLinks ? blocksImage : linkImage}
-            ></img>
-          </button>
-        </div>
-        <div className="absolute top-12 font-bold text-2xl mt-3">
-          @{username}
-        </div>
-        <div className="flex flex-col items-center">
-          <div className="top-44 absolute flex flex-col py-3 w-5/6 justify-center">
-            {showLinks && (
-              <div>
-                {links.map((item, index) => (
-                  <div>
+  if (!loading)
+    return (
+      <div className="h-screen">
+        <div className="flex flex-col items-center h-100">
+          <div className="relative top-32 z-10 ">
+            <button
+              className="border-0 bg-transparent h-10 w-10"
+              onClick={() => setShowLinks((state) => !state)}
+            >
+              <img
+                className="option-image h-10 w-10"
+                src={showLinks ? blocksImage : linkImage}
+              ></img>
+            </button>
+          </div>
+          <div className="absolute top-12 font-bold text-2xl mt-3">
+            @{username}
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="top-44 absolute flex flex-col py-3 w-5/6 justify-center">
+              {showLinks && (
+                <div>
+                  {links.map((item, index) => (
+                    <div>
+                      <button
+                        className="bg-white w-100 mt-2 mb-2 rounded-3xl py-3 fw-bolder"
+                        onClick={(e) => handleLinkClick(e, item.link)}
+                      >
+                        {item.title}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {!showLinks && (
+                <div className="flex flex flex-wrap justify-content-center">
+                  {!showInstagram && (
                     <button
-                      className="bg-white w-100 mt-2 mb-2 rounded-3xl py-3 fw-bolder"
-                      onClick={(e) => handleLinkClick(e, item.link)}
+                      className="bg-transparent border-0 w-36 h-36"
+                      onClick={() => setShowInstagram(true)}
                     >
-                      {item.title}
+                      <img src={instagramImage}></img>
                     </button>
-                  </div>
-                ))}
-              </div>
-            )}
-            {!showLinks && (
-              <div className="flex flex flex-wrap justify-content-center">
-                {!showInstagram && (
-                  <button
-                    className="bg-transparent border-0 w-36 h-36"
-                    onClick={() => setShowInstagram(true)}
-                  >
-                    <img src={instagramImage}></img>
-                  </button>
-                )}
+                  )}
 
-                {showInstagram && (
-                  <div>
-                    <div className="flex flex-row justify-end">
-                      <button
-                        className="border-0 relative bg-transparent mb-3"
-                        onClick={() => setShowInstagram(false)}
-                      >
-                        <img src={closeImage}></img>
-                      </button>
-                    </div>
-                    <div className="flex justify-content-evenly flex-wrap">
-                      {instagramApiData.map((item) => (
-                        <div>
-                          <img
-                            className="max-w-full"
-                            src={item.media_url}
-                          ></img>
-                          <div className="font-bold text-xl py-3 bg-white text-center">
-                            {item.caption}
+                  {showInstagram && (
+                    <div>
+                      <div className="flex flex-row justify-end">
+                        <button
+                          className="border-0 relative bg-transparent mb-3"
+                          onClick={() => setShowInstagram(false)}
+                        >
+                          <img src={closeImage}></img>
+                        </button>
+                      </div>
+                      <div className="flex justify-content-evenly flex-wrap">
+                        {instagramApiData.map((item) => (
+                          <div>
+                            <img
+                              className="max-w-full"
+                              src={item.media_url}
+                            ></img>
+                            <div className="font-bold text-xl py-3 bg-white text-center">
+                              {item.caption}
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-                {!showSpotify && (
-                  <button
-                    className="bg-transparent border-0 ml-5 w-36 h-36"
-                    onClick={() => setShowSpotify(true)}
-                  >
-                    <img src={spotifyImage}></img>
-                  </button>
-                )}
-                {showSpotify && (
-                  <div className="mt-5 w-100">
-                    <div className="flex flex-row justify-end">
-                      <button
-                        className="border-0 relative bg-transparent mb-3"
-                        onClick={() => setShowSpotify(false)}
-                      >
-                        <img src={closeImage}></img>
-                      </button>
-                    </div>
-                    <div className="flex flex-col justify-content-center flex-wrap">
-                      {spotifyApiData.map((item, index) => (
-                        <div className="w-fit">
-                          <img
-                            src={item.images[0].url}
-                            className="max-w-full"
-                          ></img>
-                          <div className="font-bold text-xl py-3 bg-white text-center">
-                            <a href={item.external_urls.spotify}>
-                              #{index + 1} {item.name}
-                            </a>
+                  )}
+                  {!showSpotify && (
+                    <button
+                      className="bg-transparent border-0 ml-5 w-36 h-36"
+                      onClick={() => setShowSpotify(true)}
+                    >
+                      <img src={spotifyImage}></img>
+                    </button>
+                  )}
+                  {showSpotify && (
+                    <div className="mt-5 w-100">
+                      <div className="flex flex-row justify-end">
+                        <button
+                          className="border-0 relative bg-transparent mb-3"
+                          onClick={() => setShowSpotify(false)}
+                        >
+                          <img src={closeImage}></img>
+                        </button>
+                      </div>
+                      <div className="flex flex-col justify-content-center flex-wrap">
+                        {spotifyApiData.map((item, index) => (
+                          <div className="w-fit">
+                            <img
+                              src={item.images[0].url}
+                              className="max-w-full"
+                            ></img>
+                            <div className="font-bold text-xl py-3 bg-white text-center">
+                              <a href={item.external_urls.spotify}>
+                                #{index + 1} {item.name}
+                              </a>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            )}
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default Account;

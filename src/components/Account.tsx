@@ -32,7 +32,8 @@ function Account() {
           `https://mylink-backend.onrender.com/account-data/${username}`
         );
         console.log(response);
-        if (response.status == 202) {
+        if (response.status == 200) {
+          console.log("Account not found");
           navigate("/");
         }
         if (response.data.apis) {

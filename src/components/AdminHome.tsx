@@ -121,12 +121,12 @@ export default function AdminHome() {
       const response = await axios.get(
         "https://mylink-backend.onrender.com/spotify-api",
         {
-          params: {
-            client_id: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
-            redirect_uri: import.meta.env.VITE_APP_SPOTIFY_REDIRECT_URI,
-            scope: "user-top-read",
-            response_type: "code",
-          },
+          // params: {
+          //   client_id: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
+          //   redirect_uri: import.meta.env.VITE_APP_SPOTIFY_REDIRECT_URI,
+          //   scope: "user-top-read",
+          //   response_type: "code",
+          // },
           withCredentials: true,
         }
       );

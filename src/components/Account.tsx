@@ -172,7 +172,7 @@ function Account() {
               <div className="flex flex-col justify-content-center flex-wrap">
                 {!showInstagram && (
                   <button
-                    className="bg-transparent border-0"
+                    className="bg-transparent border-0 w-36 h-36"
                     onClick={() => setShowInstagram(true)}
                   >
                     <img src={instagramImage}></img>
@@ -183,7 +183,7 @@ function Account() {
                   <div>
                     <div className="flex flex-row justify-end">
                       <button
-                        className="border-0 relative bg-transparent mb-3 w-36 h-36"
+                        className="border-0 relative bg-transparent mb-3"
                         onClick={() => setShowInstagram(false)}
                       >
                         <img src={closeImage}></img>
@@ -225,8 +225,13 @@ function Account() {
                     <div className="flex flex-col">
                       {spotifyApiData.map((item) => (
                         <div className="flex flex-row">
-                          <div className="bg-white font-bold">{item.name}</div>
-                          <img src={item.images[0]} className="h-10 w-10"></img>
+                          <div className="bg-white font-bold rounded w-2/4">
+                            {item.name}
+                          </div>
+                          <img
+                            src={item.images[0].url}
+                            className="h-15 w-15"
+                          ></img>
                         </div>
                       ))}
                     </div>

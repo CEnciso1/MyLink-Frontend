@@ -19,7 +19,7 @@ function SpotifyAuth() {
       console.log("async");
       if (searchParams.get("code")) {
         const response = await axios.post(
-          "https://mylink-backend.onrender.com/spotify-api",
+          "https://mylink-backend.onrender.com/spotify-auth",
           {
             client_secret: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
             client_id: import.meta.env.VITE_APP_SPOTIFY_APP_ID,

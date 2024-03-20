@@ -13,13 +13,13 @@ function InstagramAuth() {
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-    async () => {
+    (async () => {
       if (searchParams.get("code")) {
         const message = await getToken1(searchParams);
         console.log(message);
         setDisplayMessage(message);
       }
-    };
+    })();
   }, []);
 
   return (

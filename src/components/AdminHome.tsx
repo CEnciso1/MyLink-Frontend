@@ -258,7 +258,7 @@ export default function AdminHome() {
                       <div>
                         {!editFlags[index] ? (
                           <button
-                            className="border-0 p-0 content bg-white font-bold w-3/4 h-fit break-words"
+                            className="border-0 p-0 content bg-white font-bold w-3/4 h-fit break-all"
                             onClick={(e) => setFlagTrue(index, e)}
                           >
                             <span className="flex flex-row mb-2">

@@ -137,7 +137,7 @@ function Account() {
 
   return (
     <div className="h-screen">
-      <div className="flex flex-col items-center h-100">
+      <div className="flex items-center h-100">
         <div className="relative top-32 z-10 ">
           <button
             className="border-0 bg-transparent h-10 w-10"

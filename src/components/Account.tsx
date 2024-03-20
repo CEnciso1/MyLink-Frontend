@@ -89,6 +89,7 @@ function Account() {
       grant_type: "refresh_token",
       refresh_token: refresh_token,
       client_id: client_id,
+      client_secret: import.meta.env.VITE_APP_SPOTIFY_APP_SECRET,
     };
     console.log(body);
     const requestBody = querystring.stringify(body);

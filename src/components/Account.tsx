@@ -169,7 +169,7 @@ function Account() {
               </div>
             )}
             {!showLinks && (
-              <div className="flex flex-col justify-content-evenly">
+              <div className="flex justify-content-center">
                 {!showInstagram && (
                   <button
                     className="bg-transparent border-0 w-36 h-36"
@@ -222,7 +222,7 @@ function Account() {
                         <img src={closeImage}></img>
                       </button>
                     </div>
-                    <div className="flex flex-col justify-content-evenly flex-wrap">
+                    <div className="flex flex-col justify-content-center">
                       {spotifyApiData.map((item) => (
                         <div className="w-fit justify-content-center">
                           <div className="font-bold text-xl py-3 bg-white text-center">

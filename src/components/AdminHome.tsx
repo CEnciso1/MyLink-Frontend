@@ -34,8 +34,9 @@ export default function AdminHome() {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     if (token) {
       const authorized = validateAuth();
+      console.log(authorized);
       if (!authorized) {
-        navigate("/admin/" + username);
+        navigate("/");
       }
     }
   }, []);

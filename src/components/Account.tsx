@@ -95,7 +95,7 @@ function Account() {
     try {
       const refreshResponse = await axios.post(
         "https://accounts.spotify.com/api/token",
-        requestBody,
+        new URLSearchParams(body),
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",

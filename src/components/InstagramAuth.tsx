@@ -16,6 +16,7 @@ function InstagramAuth() {
     async () => {
       if (searchParams.get("code")) {
         const message = await getToken1(searchParams);
+        console.log(message);
         setDisplayMessage(message);
       }
     };

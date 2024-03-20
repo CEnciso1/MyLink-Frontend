@@ -15,7 +15,7 @@ function SpotifyAuth() {
 
     const searchParams = new URLSearchParams(window.location.search);
     console.log(searchParams.get("code"));
-    async () => {
+    (async () => {
       console.log("async");
       if (searchParams.get("code")) {
         const response = await axios.post(
@@ -30,7 +30,7 @@ function SpotifyAuth() {
         );
         console.log(response);
       }
-    };
+    })();
   }, [code]);
   return <div>SpotifyAuth</div>;
 }

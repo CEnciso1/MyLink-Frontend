@@ -94,7 +94,7 @@ function Account() {
     const requestBody = querystring.stringify(body);
     console.log(requestBody);
     try {
-      const buffer: Buffer = Buffer.from(
+      const buffer = Buffer.from(
         import.meta.env.VITE_APP_SPOTIFY_APP_ID +
           ":" +
           import.meta.env.VITE_APP_SPOTIFY_APP_SECRET

@@ -57,7 +57,7 @@ function Signup() {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       {alert && (
-        <div className="alert absolute mb-5 alert-danger top-32" role="alert">
+        <div className="alert absolute mb-5 alert-danger top-20" role="alert">
           {alertMessage}
         </div>
       )}

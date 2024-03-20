@@ -206,7 +206,7 @@ function Account() {
                 )}
                 {!showSpotify && (
                   <button
-                    className="bg-transparent border-0 mr-5 w-36 h-36"
+                    className="bg-transparent border-0 ml-5 w-36 h-36"
                     onClick={() => setShowSpotify(true)}
                   >
                     <img src={spotifyImage}></img>

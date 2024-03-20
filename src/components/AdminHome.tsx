@@ -190,7 +190,7 @@ export default function AdminHome() {
           >
             <img
               className="option-image h-10 w-10"
-              src={showLinks ? linkImage : blocksImage}
+              src={showLinks ? blocksImage : linkImage}
             ></img>
           </button>
         </div>

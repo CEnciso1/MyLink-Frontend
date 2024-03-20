@@ -35,7 +35,7 @@ export default function AdminHome() {
     if (token) {
       const authorized = validateAuth();
       if (!authorized) {
-        navigate("/");
+        navigate("/admin/" + username);
       }
     }
   }, []);

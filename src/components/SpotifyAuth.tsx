@@ -21,7 +21,7 @@ function SpotifyAuth() {
         const response = await axios.post(
           "https://mylink-backend.onrender.com/spotify-auth",
           {
-            client_secret: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
+            client_secret: import.meta.env.VITE_APP_SPOTIFY_APP_SECRET,
             client_id: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
             redirect_uri: import.meta.env.VITE_APP_SPOTIFY_REDIRECT_URI,
             code: searchParams.get("code"),

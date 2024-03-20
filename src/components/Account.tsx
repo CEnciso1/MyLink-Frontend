@@ -222,7 +222,7 @@ function Account() {
                         <img src={closeImage}></img>
                       </button>
                     </div>
-                    <div className="flex flex-col justify-content-evenly flex-wrap">
+                    <div className="flex flex-col justify-content-center flex-wrap">
                       {spotifyApiData.map((item) => (
                         <div className="w-fit">
                           <img

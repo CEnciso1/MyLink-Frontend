@@ -45,7 +45,7 @@ function Account() {
             console.log(responseData);
             setInstagramApiData(responseData.data);
           }
-          if (response.data.spotify) {
+          if (response.data.apis.spotify) {
             console.log("Spotify");
             const spotifyResponse = await fetchSpotifyApiData(
               response.data.apis.spotify.token,

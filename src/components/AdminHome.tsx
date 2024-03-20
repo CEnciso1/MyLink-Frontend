@@ -11,6 +11,7 @@ import deleteImage from "../assets/delete.svg";
 import closeImage from "../assets/close.svg";
 import editImage from "../assets/edit.svg";
 import axios, { AxiosRequestConfig } from "axios";
+const querystring = require("querystring");
 import { useAuth } from "../auth/AuthContext";
 
 export default function AdminHome() {
@@ -118,8 +119,15 @@ export default function AdminHome() {
   ) => {
     e.preventDefault();
     try {
+      const data = {
+        client_id: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
+        redirect_uri: import.meta.env.VITE_APP_SPOTIFY_REDIRECT_URI,
+        scope: "user-top-read",
+        response_type: "code",
+      };
+      const requestBody = querystring.stringify();
       const response = await axios.get(
-        "https://mylink-backend.onrender.com/spotify-api",
+        "https://accounts.spotify.com/authorize",
         {
           params: {
             client_id: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
@@ -130,8 +138,7 @@ export default function AdminHome() {
           withCredentials: true,
         }
       );
-      console.log("client_id", import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI);
-      window.open(response.data, "_blank");
+      console.log(response);
     } catch (error) {
       console.log(error);
     }

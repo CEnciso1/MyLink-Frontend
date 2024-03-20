@@ -169,7 +169,7 @@ function Account() {
               </div>
             )}
             {!showLinks && (
-              <div className="flex flex-col justify-content-center">
+              <div className="flex flex-col justify-content-evenly">
                 {!showInstagram && (
                   <button
                     className="bg-transparent border-0 w-36 h-36"
@@ -213,7 +213,7 @@ function Account() {
                   </button>
                 )}
                 {showSpotify && (
-                  <div>
+                  <div className="mt-5">
                     <div className="flex flex-row justify-end">
                       <button
                         className="border-0 relative bg-transparent mb-3"

@@ -258,7 +258,7 @@ export default function AdminHome() {
                       <div>
                         {!editFlags[index] ? (
                           <button
-                            className="border-0 p-0 content bg-white font-bold w-fit"
+                            className="border-0 p-0 content bg-white font-bold w-3/4 h-fit break-words"
                             onClick={(e) => setFlagTrue(index, e)}
                           >
                             <span className="flex flex-row mb-2">
@@ -269,7 +269,7 @@ export default function AdminHome() {
                         ) : (
                           <form onSubmit={(e) => handleTitleChange(e, index)}>
                             <input
-                              className="border-1 form-control bg-transparent w-fit"
+                              className="border-1 form-control bg-transparent w-3/4 h-fit break-all"
                               type="text"
                               id={`input-${index}`}
                               placeholder={item.title}

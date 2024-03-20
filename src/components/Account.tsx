@@ -225,13 +225,13 @@ function Account() {
                     <div className="flex flex-col justify-content-evenly flex-wrap">
                       {spotifyApiData.map((item) => (
                         <div className="w-fit">
-                          <div className="font-bold text-xl py-3 bg-white text-center">
-                            {item.name}
-                          </div>
                           <img
                             src={item.images[0].url}
                             className="max-w-full"
                           ></img>
+                          <div className="font-bold text-xl py-3 bg-white text-center">
+                            {item.name}
+                          </div>
                         </div>
                       ))}
                     </div>

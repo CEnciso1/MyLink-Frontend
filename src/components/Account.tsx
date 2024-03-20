@@ -94,20 +94,9 @@ function Account() {
     const requestBody = querystring.stringify(body);
     console.log(requestBody);
     try {
-      const buffer = Buffer.from(
-        import.meta.env.VITE_APP_SPOTIFY_APP_ID +
-          ":" +
-          import.meta.env.VITE_APP_SPOTIFY_APP_SECRET
-      );
       const refreshResponse = await axios.post(
-        "https://accounts.spotify.com/api/token",
-        requestBody,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            Authorization: "Basic " + buffer,
-          },
-        }
+        "https://mylink-backend.onrender.com/spotify-refresh",
+        body
       );
       console.log("REFRESH RESPONSE", refreshResponse);
       //Get media

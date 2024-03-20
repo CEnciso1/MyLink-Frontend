@@ -223,14 +223,16 @@ function Account() {
                       </button>
                     </div>
                     <div className="flex flex-col justify-content-center flex-wrap">
-                      {spotifyApiData.map((item) => (
+                      {spotifyApiData.map((item, index) => (
                         <div className="w-fit">
                           <img
                             src={item.images[0].url}
                             className="max-w-full"
                           ></img>
                           <div className="font-bold text-xl py-3 bg-white text-center">
-                            {item.name}
+                            <a href={item.external_urls.spotify}>
+                              #{index + 1} {item.name}
+                            </a>
                           </div>
                         </div>
                       ))}

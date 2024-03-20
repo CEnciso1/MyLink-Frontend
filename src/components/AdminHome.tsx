@@ -139,7 +139,7 @@ export default function AdminHome() {
         }
       );
       console.log(response);
-      window.open("https://accounts.spotify.com/authorize" + query, "_blank");
+      window.open("https://accounts.spotify.com/authorize?" + query, "_blank");
     } catch (error) {
       console.log(error);
     }

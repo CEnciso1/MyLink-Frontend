@@ -24,6 +24,7 @@ function SpotifyAuth() {
             grant_type: "authorization_code",
           }
         );
+        console.log(response);
       }
     };
   }, []);

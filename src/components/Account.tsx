@@ -224,7 +224,7 @@ function Account() {
                     </div>
                     <div className="flex flex-col justify-content-evenly flex-wrap">
                       {spotifyApiData.map((item) => (
-                        <div className="">
+                        <div className="w-fit justify-content-center">
                           <div className="font-bold text-xl py-3 bg-white text-center">
                             {item.name}
                           </div>

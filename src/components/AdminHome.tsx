@@ -297,16 +297,16 @@ export default function AdminHome() {
             )}
 
             {!showLinks && (
-              <div className="flex justify-content-center">
+              <div className="flex justify-content-center ">
                 <button
-                  className="bg-transparent border-0"
+                  className="bg-transparent border-0 w-36 h-36 mr-3"
                   onClick={(e) => connectInstagram(e)}
                 >
                   <img src={instagramImage}></img>
                 </button>
 
                 <button
-                  className="bg-transparent border-0"
+                  className="bg-transparent border-0 w-36 h-36"
                   onClick={(e) => connectSpotify(e)}
                 >
                   <img src={spotifyImage}></img>

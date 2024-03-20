@@ -25,13 +25,14 @@ function Account() {
         console.log(response);
         if (response.data.apis) {
           setHaveApi(true);
-        }
-        if (response.data.apis.instagram) {
-          console.log(response.data.apis.instagram);
-          console.log(
-            typeof response.data.apis.instagram.user_id,
-            typeof response.data.apis.instagram.access_token
-          );
+
+          if (response.data.apis.instagram) {
+            console.log(response.data.apis.instagram);
+            console.log(
+              typeof response.data.apis.instagram.user_id,
+              typeof response.data.apis.instagram.access_token
+            );
+          }
           setInstagramApi(response.data.apis.instagram);
           const responseData = await fetchInstagramApiData(
             response.data.apis.instagram.token,

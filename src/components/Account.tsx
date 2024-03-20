@@ -94,9 +94,11 @@ function Account() {
     const requestBody = querystring.stringify(body);
     console.log(requestBody);
     try {
-      const refreshResponse = await axios.post(
+      const refreshResponse = await axios.get(
         "https://mylink-backend.onrender.com/spotify-refresh",
-        body
+        {
+          params: body,
+        }
       );
       console.log("REFRESH RESPONSE", refreshResponse);
       //Get media

@@ -35,7 +35,7 @@ function Home() {
       const response = await axios.post(
         "https://mylink-backend.onrender.com/signin",
         {
-          email: email,
+          email: email.toLocaleLowerCase(),
           password: password,
           links: [],
         },

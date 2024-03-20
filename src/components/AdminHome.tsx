@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/AdminHome.css";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Logout from "./Logout";
 import blocksImage from "../assets/blocks.svg";
 import linkImage from "../assets/link.svg";
@@ -22,7 +22,7 @@ export default function AdminHome() {
   const [newLink, setNewLink] = useState("");
   const [linkTitle, setLinkTitle] = useState("");
   const [newTitle, setNewTitle] = useState("");
-
+  const navigate = useNavigate();
   const { userData, setUserData } = useAuth();
   console.log(userData);
   const [editFlags, setEditFlags] = useState(
@@ -32,6 +32,12 @@ export default function AdminHome() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    if (token) {
+      const authorized = validateAuth();
+      if (!authorized) {
+        navigate("/");
+      }
+    }
   }, []);
 
   const optionClick = () => {
@@ -177,6 +183,13 @@ export default function AdminHome() {
       console.log(error);
     }
     setFlagFalse(index);
+  };
+
+  const validateAuth = async () => {
+    const response = await axios.post("/authorize-user", {
+      username: username,
+    });
+    return response.data;
   };
 
   return (

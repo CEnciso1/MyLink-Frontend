@@ -32,6 +32,9 @@ function Account() {
           `https://mylink-backend.onrender.com/account-data/${username}`
         );
         console.log(response);
+        if (response.status == 202) {
+          navigate("/");
+        }
         if (response.data.apis) {
           setHaveApi(true);
 

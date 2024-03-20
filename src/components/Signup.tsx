@@ -18,7 +18,7 @@ function Signup() {
       password.length > 6,
       (document?.getElementById("submit") as HTMLButtonElement)?.disabled
     );
-    if (validateEmail(email) && password.length > 6) {
+    if (validateEmail(email) && password.length > 6 && username.length > 0) {
       setAllowSubmit(true);
     } else {
       setAllowSubmit(false);
@@ -84,7 +84,7 @@ function Signup() {
             className="form-control rounded-3xl border-0 p-2"
             id="username"
             placeholder="myLink.com/username"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value.trim())}
           ></input>
         </div>
         <div className="mt-3 w-4/6">

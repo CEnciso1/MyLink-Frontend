@@ -11,7 +11,7 @@ import deleteImage from "../assets/delete.svg";
 import closeImage from "../assets/close.svg";
 import editImage from "../assets/edit.svg";
 import axios, { AxiosRequestConfig } from "axios";
-const querystring = require("querystring");
+import querystring from "querystring";
 import { useAuth } from "../auth/AuthContext";
 
 export default function AdminHome() {

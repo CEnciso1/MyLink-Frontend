@@ -20,7 +20,7 @@ function SpotifyAuth() {
             client_id: import.meta.env.VITE_APP_INSTAGRAM_APP_IDD,
             redirect_uri: import.meta.env.VITE_APP_INSTAGRAM_REDIRECT_URI,
             code: searchParams.get("code"),
-            grant_type: "code",
+            grant_type: "authorization_code",
           }
         );
       }

@@ -137,7 +137,7 @@ function Account() {
 
   return (
     <div className="h-screen">
-      <div className="flex items-center h-100">
+      <div className="flex flex-col items-center h-100">
         <div className="relative top-32 z-10 ">
           <button
             className="border-0 bg-transparent h-10 w-10"
@@ -169,7 +169,7 @@ function Account() {
               </div>
             )}
             {!showLinks && (
-              <div className="flex justify-content-center">
+              <div className="flex flex-col justify-content-evenly">
                 {!showInstagram && (
                   <button
                     className="bg-transparent border-0 w-36 h-36"
@@ -222,9 +222,9 @@ function Account() {
                         <img src={closeImage}></img>
                       </button>
                     </div>
-                    <div className="flex flex-col justify-content-center">
+                    <div className="flex flex-col justify-content-evenly flex-wrap">
                       {spotifyApiData.map((item) => (
-                        <div className="w-fit justify-content-center">
+                        <div className="w-fit">
                           <div className="font-bold text-xl py-3 bg-white text-center">
                             {item.name}
                           </div>

@@ -29,10 +29,17 @@ function SpotifyAuth() {
           }
         );
         console.log(response);
+        setDisplayMessage(response.data);
       }
     })();
   }, [code]);
-  return <div>SpotifyAuth</div>;
+  return (
+    <div className="h-screen">
+      <div className="text-center  flex justify-content-center align-content-center font-bold text-xl">
+        <div>{displayMessage}</div>
+      </div>
+    </div>
+  );
 }
 
 export default SpotifyAuth;

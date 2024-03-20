@@ -46,6 +46,7 @@ function Account() {
             setInstagramApiData(responseData.data);
           }
           if (response.data.spotify) {
+            console.log("Spotify");
             const spotifyResponse = await fetchSpotifyApiData(
               response.data.apis.spotify.token,
               response.data.apis.spotify.refresh_token,
@@ -103,7 +104,7 @@ function Account() {
           },
         }
       );
-      console.log(refreshResponse);
+      console.log("REFRESH RESPONSE", refreshResponse);
       //Get media
       const spotifyMedia = await axios.get(
         "https://api.spotify.com/v1/me/top/artists",
@@ -117,8 +118,8 @@ function Account() {
           },
         }
       );
-      console.log(spotifyMedia.data);
-      setSpotifyApiData(spotifyMedia.data);
+      console.log(spotifyMedia);
+      return spotifyMedia.data;
     } catch (error) {
       console.log(error);
     }

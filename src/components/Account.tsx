@@ -17,7 +17,7 @@ function Account() {
   const [instagramApi, setInstagramApi] = useState();
   const [instagramApiData, setInstagramApiData] = useState(Array());
   const [spotifyApi, setSpotifyApi] = useState();
-  const [spotifyApiData, setSpotifyApiData] = useState();
+  const [spotifyApiData, setSpotifyApiData] = useState(Array());
   const [haveApi, setHaveApi] = useState(false);
   const [showInstagram, setShowInstagram] = useState(false);
   const [showSpotify, setShowSpotify] = useState(false);
@@ -57,6 +57,7 @@ function Account() {
               response.data.apis.spotify.client_id
             );
             console.log(spotifyResponse);
+            if (spotifyResponse) setSpotifyApiData(spotifyResponse.data);
           }
         }
         if (response.data.links) {
@@ -120,7 +121,8 @@ function Account() {
         }
       );
       console.log(spotifyMedia);
-      return spotifyMedia.data;
+      console.log(spotifyMedia.data);
+      return spotifyMedia;
     } catch (error) {
       console.log(error);
     }
@@ -167,7 +169,7 @@ function Account() {
               </div>
             )}
             {!showLinks && (
-              <div className="flex justify-content-center flex-wrap">
+              <div className="flex flex-col justify-content-center flex-wrap">
                 {!showInstagram && (
                   <button
                     className="bg-transparent border-0"
@@ -215,11 +217,12 @@ function Account() {
                     <div className="flex flex-row justify-end">
                       <button
                         className="border-0 relative bg-transparent mb-3"
-                        onClick={() => setShowInstagram(false)}
+                        onClick={() => setShowSpotify(false)}
                       >
                         <img src={closeImage}></img>
                       </button>
                     </div>
+                    <div className="flex flex-col"></div>
                   </div>
                 )}
               </div>

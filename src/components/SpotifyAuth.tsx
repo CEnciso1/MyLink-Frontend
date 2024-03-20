@@ -5,13 +5,12 @@ import { useState, useEffect } from "react";
 
 function SpotifyAuth() {
   const [displayMessage, setDisplayMessage] = useState();
-  const searchParams = new URLSearchParams(window.location.search);
-  console.log(searchParams);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
+    const searchParams = new URLSearchParams(window.location.search);
+    console.log(searchParams.get("code"));
     async () => {
       if (searchParams.get("code")) {
         const response = await axios.post(

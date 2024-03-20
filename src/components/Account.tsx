@@ -5,6 +5,8 @@ import axios, { AxiosRequestConfig } from "axios";
 import blocksImage from "../assets/blocks.svg";
 import linkImage from "../assets/link.svg";
 import querystring from "querystring";
+import instagramImage from "../assets/instagram.svg";
+import spotifyImage from "../assets/spotify.svg";
 import { userData } from "../interfaces/UserData";
 import { access } from "fs";
 
@@ -16,6 +18,7 @@ function Account() {
   const [spotifyApi, setSpotifyApi] = useState();
   const [spotifyApiData, setSpotifyApiData] = useState();
   const [haveApi, setHaveApi] = useState(false);
+  const [showInstagram, setShowInstagram] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
   const navigate = useNavigate();
 
@@ -162,15 +165,28 @@ function Account() {
               </div>
             )}
             {!showLinks && (
-              <div className="flex justify-content-evenly flex-wrap">
-                {instagramApiData.map((item) => (
-                  <div>
-                    <img className="max-w-full" src={item.media_url}></img>
-                    <div className="font-bold text-xl py-3 bg-white text-center">
-                      {item.caption}
-                    </div>
+              <div className="flex justify-content-center flex-wrap">
+                {!showInstagram && (
+                  <button
+                    className="bg-transparent border-0"
+                    onClick={() => setShowInstagram(true)}
+                  >
+                    <img src={instagramImage}></img>
+                  </button>
+                )}
+
+                {showInstagram && (
+                  <div className="flex justify-content-evenly flex-wrap">
+                    {instagramApiData.map((item) => (
+                      <div>
+                        <img className="max-w-full" src={item.media_url}></img>
+                        <div className="font-bold text-xl py-3 bg-white text-center">
+                          {item.caption}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                )}
               </div>
             )}
           </div>

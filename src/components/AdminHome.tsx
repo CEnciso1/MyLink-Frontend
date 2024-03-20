@@ -118,27 +118,14 @@ export default function AdminHome() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const data = {
-      client_id: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
-      redirect_uri: import.meta.env.VITE_APP_SPOTIFY_REDIRECT_URI,
-      scope: "user-top-read",
-      response_type: "code",
-    };
-    const query = querystring.stringify(data);
     try {
-      const response = await axios.get(
-        "https://mylink-backend.onrender.com/spotify-api",
-        {
-          params: {
-            client_id: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
-            redirect_uri: import.meta.env.VITE_APP_SPOTIFY_REDIRECT_URI,
-            scope: "user-top-read",
-            response_type: "code",
-          },
-          withCredentials: true,
-        }
-      );
-      console.log(response);
+      const data = {
+        client_id: import.meta.env.VITE_APP_SPOTIFY_APP_ID,
+        redirect_uri: import.meta.env.VITE_APP_SPOTIFY_REDIRECT_URI,
+        scope: "user-top-read",
+        response_type: "code",
+      };
+      const query = querystring.stringify(data);
       window.open("https://accounts.spotify.com/authorize?" + query, "_blank");
     } catch (error) {
       console.log(error);

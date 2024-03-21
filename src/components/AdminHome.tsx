@@ -193,6 +193,7 @@ export default function AdminHome() {
         username: username,
       }
     );
+    console.log(response);
     return response.data;
   };
 

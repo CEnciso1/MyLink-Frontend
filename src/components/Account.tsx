@@ -35,7 +35,6 @@ function Account() {
         console.log(response);
         if (response.status == 200) {
           console.log("Account not found");
-          navigate("/");
         }
         if (response.data.apis) {
           setHaveApi(true);

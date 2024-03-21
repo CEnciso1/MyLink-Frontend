@@ -36,7 +36,7 @@ function SpotifyAuth() {
   return (
     <div className="h-screen">
       <div className="text-center  flex justify-content-center align-content-center font-bold text-xl">
-        <div className="top-42">{displayMessage}</div>
+        <div className="mt-48">{displayMessage}</div>
       </div>
     </div>
   );

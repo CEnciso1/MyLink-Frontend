@@ -33,11 +33,13 @@ export default function AdminHome() {
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     if (token) {
-      const authorized = validateAuth();
-      console.log(authorized);
-      if (!authorized) {
-        navigate("/");
-      }
+      (async () => {
+        const authorized = await validateAuth();
+        console.log(authorized.data);
+        if (!authorized) {
+          navigate("/");
+        }
+      })();
     }
   }, []);
 

@@ -37,7 +37,6 @@ export default function AdminHome() {
         const authorized = await validateAuth();
         console.log(authorized.data);
         if (!authorized) {
-          navigate("/");
         }
       })();
     }

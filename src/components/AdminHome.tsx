@@ -187,9 +187,12 @@ export default function AdminHome() {
   };
 
   const validateAuth = async () => {
-    const response = await axios.post("/authorize-user", {
-      username: username,
-    });
+    const response = await axios.post(
+      "https://mylink-backend.onrender.com/authorize-user",
+      {
+        username: username,
+      }
+    );
     return response.data;
   };
 
